@@ -111,7 +111,8 @@
       background-image: url('images/header.jpeg');
       background-repeat: no-repeat;
       background-position: center right; /* Devojka desno, tekst levo */
-      background-size: contain; 
+      background-size: contain;
+	  padding-top: 50px;
       min-height: 90vh; 
       display: flex;
       align-items: center; 
@@ -123,11 +124,12 @@
     /* Za mobilne uređaje, tekst na hero sekciji dobija pozadinu i centriran je */
     @media (max-width: 991px) { /* Ovo je za md i manje ekrane */
       .hero {
-        background-position: center center; 
-        text-align: center; 
+        background-position: center right;
+        text-align: center;
+		min-height: 70vh;
       }
       .hero .container .row {
-        justify-content: center; 
+        justify-content: left; 
       }
       .hero-content-box {
         background: rgba(var(--light-background-rgb), 0.9); /* Mobilna pozadina hero boksa prati novu svetlu pozadinu */
@@ -140,12 +142,31 @@
         justify-content: center; 
       }
     }
+	
+	/* Stilovi za mobilne telefone (ekrani manji od 768px) */
+	@media (max-width: 768px) {
+		
+	}
+
     /* Dodatni stil za padding na jako malim ekranima */
     @media (max-width: 575.98px) {
+		.hero {
+			min-height: 70vh;
+			background-position: center right;
+			text-align: left;  
+		  }
         .hero-content-box {
             padding-left: 15px;
             padding-right: 15px;
         }
+		
+		.hero-title {
+			font-size: 2rem !important; /* Prilagodite veličinu po želji (npr. 32px) */
+		}
+		
+		.hero-text {
+			font-size: 1rem !important; /* Prilagodite veličinu (npr. 16px) */
+		}
     }
 
 
@@ -253,7 +274,7 @@
 
     /* Klasa za prikazivanje i animaciju detalja */
     .course-details-section.is-visible {
-      max-height: 600px; 
+      max-height: 600px; /* Povećaj ako PDF dugmad dodaju visinu */
       opacity: 1;
       transform: translateY(0);
       margin-bottom: 1.5rem; 
@@ -315,16 +336,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5 col-md-7 hero-content-box reveal active">         
-        <h1 class="display-4 fw-bold mb-3 text-dark">Progovori engleski sa potpunim samopouzdanjem</h1>
+        <h1 class="hero-title display-4 fw-bold mb-3 text-dark">
+			Progovori engleski sa potpunim samopouzdanjem
+		</h1>
         
-        <p class="lead mb-4 text-secondary fw-medium">
-          Personalizovani časovi prilagođeni tvom tempu. Bez stresa, kroz razgovor i zanimljive teme.
-        </p>
+		<p class="hero-text lead mb-4 text-secondary fw-medium">
+			Personalizovani časovi prilagođeni tvom tempu. Bez stresa, kroz razgovor i zanimljive teme.
+		</p>
+
         
-        <div class="d-flex gap-3 flex-wrap">
-            <a href="#kursevi" class="btn btn-primary btn-lg rounded-pill px-5 shadow hover-lift">Izaberi Kurs</a>
-            <a href="#kontakt" class="btn btn-outline-dark btn-lg rounded-pill px-4">Kontakt</a>
-        </div>
+        <div class="d-flex flex-column flex-sm-row gap-3">
+			<a href="#kursevi" class="btn btn-primary btn-lg rounded-pill px-5 shadow hover-lift">Izaberi Kurs</a>
+			<a href="#kontakt" class="btn btn-outline-dark btn-lg rounded-pill px-4">Kontakt</a>
+		</div>
       </div>
     </div>
   </div>
@@ -399,7 +423,13 @@
             </div>
             <div class="col-md-4 text-center border-start">
                 <p class="text-muted fst-italic">"Primer lekcije: Role-play naručivanja hrane u restoranu."</p>
-                <a href="#kontakt" class="btn btn-primary rounded-pill w-100">Prijavi se</a>
+                <div class="d-grid gap-2"> <!-- Dodat div za slaganje dugmadi -->
+                    <a href="#kontakt" class="btn btn-primary rounded-pill w-100">Prijavi se</a>
+                    <!-- Dodato dugme za PDF -->
+                    <a href="docs/pdf/primer.pdf" target="_blank" class="btn btn-outline-primary rounded-pill w-100 mt-2">
+                        <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
+                    </a>
+                </div>
             </div>
         </div>
       </div>
@@ -418,7 +448,13 @@
             </div>
             <div class="col-md-4 text-center border-start">
                 <p class="text-muted fst-italic">"Primer lekcije: Debata o društvenim mrežama."</p>
-                <a href="#kontakt" class="btn btn-success rounded-pill w-100">Prijavi se</a>
+                <div class="d-grid gap-2"> <!-- Dodat div za slaganje dugmadi -->
+                    <a href="#kontakt" class="btn btn-success rounded-pill w-100">Prijavi se</a>
+                    <!-- Dodato dugme za PDF -->
+                    <a href="assets/pdf/example-b1.pdf" target="_blank" class="btn btn-outline-success rounded-pill w-100 mt-2">
+                        <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
+                    </a>
+                </div>
             </div>
         </div>
       </div>
@@ -437,7 +473,13 @@
             </div>
             <div class="col-md-4 text-center border-start">
                 <p class="text-muted fst-italic">"Primer lekcije: The Elevator Pitch - prodaj svoju ideju."</p>
-                <a href="#kontakt" class="btn btn-warning rounded-pill w-100 text-dark">Prijavi se</a>
+                <div class="d-grid gap-2"> <!-- Dodat div za slaganje dugmadi -->
+                    <a href="#kontakt" class="btn btn-warning rounded-pill w-100 text-dark">Prijavi se</a>
+                    <!-- Dodato dugme za PDF -->
+                    <a href="assets/pdf/example-c1.pdf" target="_blank" class="btn btn-outline-warning rounded-pill w-100 mt-2 text-dark">
+                        <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
+                    </a>
+                </div>
             </div>
         </div>
       </div>
@@ -577,8 +619,8 @@
     if (mainNavbar) {
       // Koristimo getBoundingClientRect().height za precizniju visinu
       const navbarHeight = mainNavbar.getBoundingClientRect().height; 
-      document.body.style.paddingTop = navbarHeight + 'px';
-      document.documentElement.style.scrollPaddingTop = navbarHeight + 'px';
+      <!-- document.body.style.paddingtop = navbarheight + 'px'; -->
+      <!-- document.documentElement.style.scrollPaddingTop = navbarHeight + 'px'; -->
       // console.log("Navbar height adjusted to:", navbarHeight); // Može se koristiti za debagovanje
     }
   }
