@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EnglishMaster | Online Časovi</title>
   
-    <!-- Meta tagovi za kontrolu keša (NAPOMENA: Mogu, ali ne moraju uvek da override-uju server-side keširanje, npr. na GitHub Pages CDN-u) -->
+  <!-- Meta tagovi za kontrolu keša (NAPOMENA: Mogu, ali ne moraju uvek da override-uju server-side keširanje, npr. na GitHub Pages CDN-u) -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -87,15 +87,56 @@
 
     /* --- NAVIGATION (AŽURIRANO ZA TRANSPARENTNOST I BOJE) --- */
     .navbar {
-      background-color: rgba(var(--light-background-rgb), 0.95); /* Malo transparentna nova svetla pozadina */
+      /* AKO JE VAŠ LOGO FAJL TRANSPARENTAN (PNG, SVG), KORISTITE OVO: */
+      background-color: rgba(var(--light-background-rgb), 0.95);
+      /* AKO VAŠ LOGO IMA BELU POZADINU I ŽELITE DA SE STOPI, KORISTITE OVO (ODKOMENTARIŠITE I ZAKOMENTARIŠITE GORNJU LINIJU): */
+      /* background-color: #FFFFFF; */ 
       transition: background-color 0.3s ease-in-out;
+      
+      /* --- FIKSNA VISINA NAVBAR-A NA DESKTOPU --- */
+      min-height: 60px; /* Ukupna visina navbar-a na desktopu */
+      padding-top: 7.5px; /* Vertikalni padding unutar navbar-a (7.5px + 7.5px = 15px) */
+      padding-bottom: 7.5px; /* Ovo ostavlja 45px (60px - 15px) prostora za sadržaj */
+      
+      /* Bootstrapov .navbar već ima display: flex i align-items: center za vertikalno centriranje,
+         što je dobro za sadržaj poput logoa i navigacionih linkova. */
     }
     .navbar.shadow {
-        background-color: rgba(var(--light-background-rgb), 0.98); /* Skoro potpuno bela kada ima senku */
+        /* AKO JE GORNJI NAVABAR rgba, ONDA I OVAJ TREBA BITI: */
+        background-color: rgba(var(--light-background-rgb), 0.98);
+        /* AKO JE GORNJI NAVABAR #FFFFFF, ONDA I OVAJ TREBA BITI: */
+        /* background-color: #FFFFFF; */ 
     }
-    .navbar-brand.text-primary {
-        color: var(--primary-custom) !important;
+
+    .navbar-brand {
+      padding: 0; /* Uklanja Bootstrapov podrazumevani padding sa .navbar-brand koji bi inače mogao da menja visinu */
+      height: 100%; /* Omogućava img tagu unutar da zauzme punu visinu branda */
+      display: flex; /* Koristimo flexbox za centriranje slike unutar branda ako je potrebno */
+      align-items: center; /* Vertikalno centriranje */
     }
+
+    /* Stil za logo sliku u navbaru - Responsivno i sa kontrolisanom širinom i visinom */
+    .navbar-brand img {
+        max-height: 60px; /* Maksimalna visina logoa (odgovara 60px visini navbar-a minus padding) */
+        width: auto;      /* Održava proporcije širine automatski */
+        max-width: 180px; /* POSTAVLJENA FIKSNA MAKSIMALNA ŠIRINA za desktop. Prilagodite po potrebi! */
+        display: block;   /* Važno za pravilno skaliranje */
+    }
+    
+    /* Responsivnost za logo i navbar na manjim ekranima */
+    @media (max-width: 767px) {
+        .navbar {
+            min-height: 50px; /* Manja ukupna visina navbar-a na mobilnim uređajima */
+            padding-top: 6px;  /* Manji vertikalni padding (6px + 6px = 12px) */
+            padding-bottom: 6px; /* Ovo ostavlja 38px (50px - 12px) prostora za sadržaj */
+        }
+        .navbar-brand img {
+            max-height: 38px; /* Manja maksimalna visina logoa (odgovara 50px visini navbar-a minus padding) */
+            max-width: 150px; /* Smanjuje maksimalnu širinu logoa na mobilnim uređajima. Prilagodite po potrebi! */
+        }
+    }
+
+
     .nav-link {
         color: var(--dark-text); /* Linkovi dobijaju tamniju boju */
     }
@@ -315,10 +356,11 @@
 <body>
 
 <!-- 1. NAVIGATION -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm py-3" id="mainNavbar"> 
+<!-- Uklonjena klasa "py-3" da bismo ručno kontrolisali visinu navbar-a u CSS-u -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNavbar"> 
   <div class="container">
-    <a class="navbar-brand fw-bold text-primary fs-3" href="#">
-      <i class="bi bi-translate"></i> EnglishMaster
+    <a class="navbar-brand" href="#">
+      <img src="images/logo.png" alt="MasterEnglish Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -376,7 +418,7 @@
         <div id="card-a1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-a1', this, true)">
           <div class="card-body">
             <div class="display-4 text-primary mb-3"><i class="bi bi-chat-left-dots"></i></div>
-            <h5 class="card-title fw-bold fs-4">Početni Nivo</h5>
+            <h5 class="card-title fw-bold fs-4}>Početni Nivo</h5>
             <span class="badge bg-primary bg-opacity-10 text-primary mb-3">A1 - A2</span>
             <p class="card-text text-secondary">Savladaj osnove gramatike i svakodnevne komunikacije bez straha.</p>
             <div class="mt-4 text-primary fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div>
@@ -430,7 +472,7 @@
                 <p class="text-muted fst-italic">"Primer lekcije: Role-play naručivanja hrane u restoranu."</p>
                 <div class="d-grid gap-2"> <!-- Dodat div za slaganje dugmadi -->
                     <!-- Dodato dugme za PDF -->
-                    <a href="docs/pdf/primer.pdf" target="_blank" class="btn btn-outline-primary rounded-pill w-100 mt-2">
+                    <a href="assets/pdf/example-a1.pdf" target="_blank" class="btn btn-outline-primary rounded-pill w-100 mt-2">
                         <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
                     </a>
 					<a href="#kontakt" class="btn btn-primary rounded-pill w-100">Prijavi se</a>
@@ -597,12 +639,12 @@
 <!-- FOOTER -->
 <footer class="bg-dark text-white py-4 mt-5">
   <div class="container text-center">
-    <h5 class="fw-bold mb-3">EnglishMaster</h5>
+    <h5 class="fw-bold mb-3">MasterEnglish</h5> 
     <div class="mb-3">
         <a href="#" class="text-white-50 mx-2"><i class="bi bi-instagram fs-5"></i></a>
         <a href="#" class="text-white-50 mx-2"><i class="bi bi-facebook fs-5"></i></a>
     </div>
-    <small class="text-white-50">&copy; 2024 EnglishMaster. Sva prava zadržana.</small>
+    <small class="text-white-50">&copy; 2024 MasterEnglish. Sva prava zadržana.</small>
   </div>
 </footer>
 
@@ -622,11 +664,10 @@
   function adjustNavbarOffset() {
     const mainNavbar = document.getElementById('mainNavbar');
     if (mainNavbar) {
-      // Koristimo getBoundingClientRect().height za precizniju visinu
       const navbarHeight = mainNavbar.getBoundingClientRect().height; 
-      <!-- document.body.style.paddingtop = navbarheight + 'px'; -->
-      <!-- document.documentElement.style.scrollPaddingTop = navbarHeight + 'px'; -->
-      // console.log("Navbar height adjusted to:", navbarHeight); // Može se koristiti za debagovanje
+      // Ovi delovi koda su bili zakomentarisani, pa ih ostavljam takvim
+      // document.body.style.paddingTop = navbarHeight + 'px';
+      // document.documentElement.style.scrollPaddingTop = navbarHeight + 'px';
     }
   }
 
