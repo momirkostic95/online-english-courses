@@ -15,6 +15,7 @@
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
+  <!-- Google reCAPTCHA skripta - mora biti ovde, pre JS koji je koristi -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
   <style>
@@ -319,7 +320,7 @@
     <div class="row">
       <div class="col-lg-5 col-md-7 hero-content-box reveal active">         
         <h1 class="hero-title display-4 fw-bold mb-3 text-dark">
-			Progovori engleski sa potpunim samopouzdanjem
+			Progovori engleski sa potpunim samopopouzdanjem
 		</h1>
         
 		<p class="hero-text lead mb-4 text-secondary fw-medium">
@@ -546,14 +547,12 @@
                     <input type="text" name="bot_check" id="bot_check" tabindex="-1" autocomplete="off">
                   </div>
 				  
-				  
 				  <div class="mb-4">
-					<!-- Zameni TVOJ_SITE_KEY sa pravim ključem od Google-a -->
+					<!-- TVOJ_SITE_KEY_OVDE ZAMENJEN KLJUČEM IZ TVOG HTML-A -->
 					<div class="g-recaptcha" data-sitekey="6LfAFFQsAAAAAHCljH3RsHQ1gY8e5J6MWyg8pO-A"></div> 
 				  </div>
 
 				  <div class="d-grid">
-                    <!-- Dodat ID dugmetu za manipulaciju kroz JS -->
 					<button type="submit" id="submit-btn" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold shadow hover-lift">
 					  Pošalji Upit
 					</button>
@@ -758,7 +757,7 @@
   });
 </script>
 
-<!-- AŽURIRANA SKRIPTA ZA SLANJE EMAIL-A (SA HONEYPOT ZAŠTITOM) -->
+<!-- AŽURIRANA SKRIPTA ZA SLANJE EMAIL-A (SA HONEYPOT I RECAPTCHA ZAŠTITOM) -->
 <script>
   const kontaktForma = document.getElementById('kontakt-forma');
   const statusPoruke = document.getElementById('status-poruke');
@@ -767,33 +766,47 @@
   kontaktForma.addEventListener('submit', function(e) {
     e.preventDefault();
 
+    // Resetovanje status poruke
+    statusPoruke.classList.remove('text-success', 'text-danger');
+    statusPoruke.textContent = "";
+
     // 1. SECURITY CHECK (Honeypot)
-    // Ako bot popuni skriveno polje, prekidamo funkciju
     const botCheck = document.getElementById('bot_check').value;
     if (botCheck !== "") {
-        console.warn("Spam attempt blocked.");
+        console.warn("Spam attempt blocked by honeypot.");
+        // Ne prikazujemo grešku korisniku da ne bismo otkrili honeypot
         return; 
     }
 
-    // 2. UI FEEDBACK (Sprečavanje duplog klika i vizuelni prikaz)
-    statusPoruke.classList.remove('text-success', 'text-danger');
+    // 2. RECAPTCHA CHECK
+    // grecaptcha je globalni objekat koji dolazi sa Google reCAPTCHA skriptom
+    const recaptchaResponse = grecaptcha.getResponse(); 
+    if (recaptchaResponse.length === 0) { // Provera da li je odgovor prazan (nije čekirano)
+        statusPoruke.classList.add('text-danger');
+        statusPoruke.textContent = "Molimo potvrdite da niste robot (reCAPTCHA).";
+        return; // Prekini slanje forme
+    }
+
+    // 3. UI FEEDBACK (Sprečavanje duplog klika i vizuelni prikaz)
     statusPoruke.textContent = "Šaljem poruku...";
     
     // Onemogući dugme i dodaj spinner
     submitBtn.disabled = true;
-    const originalBtnText = submitBtn.innerHTML;
+    const originalBtnText = submitBtn.innerHTML; // Sačuvaj originalni tekst dugmeta
     submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Slanje...';
 
-    // 3. SLANJE NA EMAILJS
+    // 4. SLANJE NA EMAILJS
     emailjs.sendForm('service_cl4fw3d', 'template_e3mln5p', this)
       .then(function() {
         statusPoruke.classList.add('text-success');
         statusPoruke.textContent = "Poruka je uspešno poslata! Javiću ti se u roku od 24h.";
         kontaktForma.reset();
+        grecaptcha.reset(); // Resetuj reCAPTCHA nakon uspešnog slanja
       }, function(error) {
         console.log('EmailJS greška:', error);
         statusPoruke.classList.add('text-danger');
         statusPoruke.textContent = "Došlo je do greške pri slanju. Pokušaj ponovo ili piši direktno na email.";
+        grecaptcha.reset(); // Resetuj reCAPTCHA nakon neuspešnog slanja
       })
       .finally(function() {
         // Vraćanje dugmeta u normalu u svakom slučaju (uspeh ili greška)
