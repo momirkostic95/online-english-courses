@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EnglishMaster | Online Časovi</title>
   
-  <!-- Meta tagovi za kontrolu keša (NAPOMENA: Mogu, ali ne moraju uvek da override-uju server-side keširanje, npr. na GitHub Pages CDN-u) -->
+  <!-- Meta tagovi za kontrolu keša -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -15,22 +15,24 @@
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
   <style>
     /* --- CUSTOM CSS VARIABLES --- */
     :root {
       --primary-custom: #3482B7; /* Professional Blue/Teal */
-      --primary-custom-rgb: 52, 130, 183; /* RGB vrednosti za custom primary boju */
-      --light-background: #FDFBF8; /* Veoma suptilna topla off-white/bež pozadina */
-      --light-background-rgb: 253, 251, 248; /* RGB vrednosti za svetlu pozadinu */
-      --dark-text: #333333; /* Nešto mekša tamna boja teksta */
-      --muted-text: #6c757d; /* Standardna prigušena boja teksta */
-      --card-bg-hover: #F2F8FC; /* Veoma svetlo plava za hover kartica */
-      --hero-bg-color: #f4efd8; /* Postojeća topla boja hero sekcije */
+      --primary-custom-rgb: 52, 130, 183;
+      --light-background: #FDFBF8;
+      --light-background-rgb: 253, 251, 248;
+      --dark-text: #333333;
+      --muted-text: #6c757d;
+      --card-bg-hover: #F2F8FC;
+      --hero-bg-color: #f4efd8;
     }
 
-    /* --- GENERAL STYLES (AŽURIRANO ZA HORIZONTALNI SKROL I DINAMIČKI NAVBAR) --- */
+    /* --- GENERAL STYLES --- */
     html {
-      scroll-behavior: smooth; /* Glatko skrolovanje do anchor linkova */
+      scroll-behavior: smooth;
       overflow-x: hidden; 
       width: 100%; 
       margin: 0;
@@ -38,13 +40,12 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--light-background); /* Nova, toplija pozadina */
-      color: var(--dark-text); /* Nova tamna boja teksta */
+      background-color: var(--light-background);
+      color: var(--dark-text);
       overflow-x: hidden; 
       width: 100%; 
     }
 
-    /* Osigurava da se svi medijski elementi skaliraju pravilno */
     img, video, iframe, embed, object {
       max-width: 100%;
       height: auto; 
@@ -52,14 +53,13 @@
     }
 
     /* --- GENERALNE KLASNE ZAMENE --- */
-    /* Zamenjuje Bootstrapovu text-primary klasu našom custom bojom */
     .text-primary { color: var(--primary-custom) !important; }
     .btn-primary { 
         background-color: var(--primary-custom); 
         border-color: var(--primary-custom);
     }
     .btn-primary:hover { 
-        background-color: #2a6f9c; /* Tamnija nijansa na hover */
+        background-color: #2a6f9c;
         border-color: #2a6f9c;
     }
     .btn-outline-primary {
@@ -73,76 +73,56 @@
     .badge.bg-primary { background-color: var(--primary-custom) !important; }
     .badge.bg-primary.bg-opacity-10 { background-color: rgba(var(--primary-custom-rgb), 0.1) !important; }
     
-    /* Zamenjuje Bootstrapovu text-dark klasu našom custom bojom */
     .text-dark { color: var(--dark-text) !important; }
-    /* Zamenjuje Bootstrapovu text-secondary klasu našom custom bojom */
     .text-secondary { color: var(--muted-text) !important; }
 
     /* Forms */
     .form-control.bg-light, .form-select.bg-light {
-        background-color: var(--light-background) !important; /* Forme prate novu svetlu pozadinu */
-        border: 1px solid rgba(var(--muted-text-rgb, 108, 117, 125), 0.25); /* Suptilniji border */
+        background-color: var(--light-background) !important;
+        border: 1px solid rgba(var(--muted-text-rgb, 108, 117, 125), 0.25);
     }
 
 
-    /* --- NAVIGATION (AŽURIRANO ZA TRANSPARENTNOST I BOJE) --- */
+    /* --- NAVIGATION --- */
     .navbar {
-      /* AKO JE VAŠ LOGO FAJL TRANSPARENTAN (PNG, SVG), KORISTITE OVO: */
       background-color: rgba(var(--light-background-rgb), 0.95);
-      /* AKO VAŠ LOGO IMA BELU POZADINU I ŽELITE DA SE STOPI, KORISTITE OVO (ODKOMENTARIŠITE I ZAKOMENTARIŠITE GORNJU LINIJU): */
-      /* background-color: #FFFFFF; */ 
       transition: background-color 0.3s ease-in-out;
-      
-      /* --- FIKSNA VISINA NAVBAR-A NA DESKTOPU --- */
-      min-height: 60px; /* Ukupna visina navbar-a na desktopu */
-      padding-top: 7.5px; /* Vertikalni padding unutar navbar-a (7.5px + 7.5px = 15px) */
-      padding-bottom: 7.5px; /* Ovo ostavlja 45px (60px - 15px) prostora za sadržaj */
-      
-      /* Bootstrapov .navbar već ima display: flex i align-items: center za vertikalno centriranje,
-         što je dobro za sadržaj poput logoa i navigacionih linkova. */
+      min-height: 60px;
+      padding-top: 7.5px;
+      padding-bottom: 7.5px;
     }
     .navbar.shadow {
-        /* AKO JE GORNJI NAVABAR rgba, ONDA I OVAJ TREBA BITI: */
         background-color: rgba(var(--light-background-rgb), 0.98);
-        /* AKO JE GORNJI NAVABAR #FFFFFF, ONDA I OVAJ TREBA BITI: */
-        /* background-color: #FFFFFF; */ 
     }
 
     .navbar-brand {
-      padding: 0; /* Uklanja Bootstrapov podrazumevani padding sa .navbar-brand koji bi inače mogao da menja visinu */
-      height: 100%; /* Omogućava img tagu unutar da zauzme punu visinu branda */
-      display: flex; /* Koristimo flexbox za centriranje slike unutar branda ako je potrebno */
-      align-items: center; /* Vertikalno centriranje */
+      padding: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
 
-    /* Stil za logo sliku u navbaru - Responsivno i sa kontrolisanom širinom i visinom */
     .navbar-brand img {
-        max-height: 60px; /* Maksimalna visina logoa (odgovara 60px visini navbar-a minus padding) */
-        width: auto;      /* Održava proporcije širine automatski */
-        max-width: 180px; /* POSTAVLJENA FIKSNA MAKSIMALNA ŠIRINA za desktop. Prilagodite po potrebi! */
-        display: block;   /* Važno za pravilno skaliranje */
+        max-height: 60px;
+        width: auto;
+        max-width: 180px;
+        display: block;
     }
     
-    /* Responsivnost za logo i navbar na manjim ekranima */
     @media (max-width: 767px) {
         .navbar {
-            min-height: 50px; /* Manja ukupna visina navbar-a na mobilnim uređajima */
-            padding-top: 6px;  /* Manji vertikalni padding (6px + 6px = 12px) */
-            padding-bottom: 6px; /* Ovo ostavlja 38px (50px - 12px) prostora za sadržaj */
+            min-height: 50px;
+            padding-top: 6px;
+            padding-bottom: 6px;
         }
         .navbar-brand img {
-            max-height: 38px; /* Manja maksimalna visina logoa (odgovara 50px visini navbar-a minus padding) */
-            max-width: 150px; /* Smanjuje maksimalnu širinu logoa na mobilnim uređajima. Prilagodite po potrebi! */
+            max-height: 38px;
+            max-width: 150px;
         }
     }
 
-
-    .nav-link {
-        color: var(--dark-text); /* Linkovi dobijaju tamniju boju */
-    }
-    .nav-link:hover, .nav-link.active {
-        color: var(--primary-custom); /* Hover stanje linkova */
-    }
+    .nav-link { color: var(--dark-text); }
+    .nav-link:hover, .nav-link.active { color: var(--primary-custom); }
     .btn-outline-dark {
         color: var(--dark-text);
         border-color: var(--dark-text);
@@ -156,7 +136,7 @@
 	.hero {
       background-image: url('images/header.jpeg');
       background-repeat: no-repeat;
-      background-position: center right; /* Devojka desno, tekst levo */
+      background-position: center right;
       background-size: contain;
 	  padding-top: 50px;
       min-height: 90vh; 
@@ -164,55 +144,40 @@
       align-items: center; 
       position: relative;
       clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-	  background-color: var(--hero-bg-color); /* Postojeća topla boja hero sekcije */
+	  background-color: #F7F0DA;
     }
 
-    /* Za mobilne uređaje, tekst na hero sekciji dobija pozadinu i centriran je */
-    @media (max-width: 991px) { /* Ovo je za md i manje ekrane */
+    @media (max-width: 991px) {
       .hero {
         background-position: center right;
+		background-size: cover;
         text-align: center;
 		min-height: 70vh;
       }
-      .hero .container .row {
-        justify-content: left; 
-      }
+      .hero .container .row { justify-content: center; }
       .hero-content-box {
-        background: rgba(var(--light-background-rgb), 0.9); /* Mobilna pozadina hero boksa prati novu svetlu pozadinu */
+        background: rgba(var(--light-background-rgb), 0.9);
         padding: 30px; 
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         padding-bottom: 2rem; 
       }
-      .hero .d-flex.gap-3.flex-wrap {
-        justify-content: center; 
-      }
+      .hero .d-flex.gap-3.flex-wrap { justify-content: center; }
     }
 	
-	/* Stilovi za mobilne telefone (ekrani manji od 768px) */
-	@media (max-width: 768px) {
-		
-	}
-
-    /* Dodatni stil za padding na jako malim ekranima */
     @media (max-width: 575.98px) {
 		.hero {
 			min-height: 70vh;
 			background-position: center right;
 			text-align: left;  
+			background-size: cover;
 		  }
         .hero-content-box {
             padding-left: 15px;
             padding-right: 15px;
         }
-		
-		.hero-title {
-			font-size: 2rem !important; /* Prilagodite veličinu po želji (npr. 32px) */
-		}
-		
-		.hero-text {
-			font-size: 1rem !important; /* Prilagodite veličinu (npr. 16px) */
-		}
+		.hero-title { font-size: 2rem !important; }
+		.hero-text { font-size: 1rem !important; }
     }
 
 
@@ -230,34 +195,23 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
 
-    /* --- ABOUT SECTION ANIMATIONS (samo za desktop - KORIGOVANO) --- */
-    /* Pozadina "O nama" sekcije prati novu svetlu pozadinu */
-    #o-nama {
-        background-color: var(--light-background) !important;
-    }
+    /* --- ABOUT SECTION ANIMATIONS --- */
+    #o-nama { background-color: var(--light-background) !important; }
     @media (min-width: 992px) { 
-        #o-nama .col-lg-6:first-child.reveal {
-            transform: translateY(30px) translateX(-50px); 
-        }
-        #o-nama .col-lg-6:last-child.reveal {
-            transform: translateY(30px) translateX(50px); 
-        }
-        #o-nama .col-lg-6:first-child.reveal.active {
-            transform: translateY(0) translateX(0); 
-        }
-        #o-nama .col-lg-6:last-child.reveal.active {
-            transform: translateY(0) translateX(0); 
-        }
+        #o-nama .col-lg-6:first-child.reveal { transform: translateY(30px) translateX(-50px); }
+        #o-nama .col-lg-6:last-child.reveal { transform: translateY(30px) translateX(50px); }
+        #o-nama .col-lg-6:first-child.reveal.active { transform: translateY(0) translateX(0); }
+        #o-nama .col-lg-6:last-child.reveal.active { transform: translateY(0) translateX(0); }
     }
 
-    /* --- COURSE CARDS - POBOLJŠANO --- */
+    /* --- COURSE CARDS --- */
     .course-card {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       cursor: pointer;
-      background: #fff; /* Kartice ostaju bele za čistoću */
+      background: #fff;
       border-radius: 12px;
-      border: 1px solid rgba(var(--primary-custom-rgb), 0.2); /* Suptilniji border, ali vezan za primarnu boju */
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08); /* Suptilnija senka */
+      border: 1px solid rgba(var(--primary-custom-rgb), 0.2);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
       position: relative;
       overflow: hidden;
       z-index: 1;
@@ -267,27 +221,20 @@
       content: "";
       position: absolute;
       top: 0; left: 0; width: 100%; height: 0%;
-      background: var(--card-bg-hover); /* Nova boja za hover efekat */
+      background: var(--card-bg-hover);
       z-index: -1;
       transition: height 0.3s ease;
     }
 
-    .course-card:hover::before {
-      height: 100%; 
-    }
+    .course-card:hover::before { height: 100%; }
 
     .course-card:hover {
-      transform: translateY(-10px); /* Manji lift na hoveru */
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Manja ali primetnija senka na hoveru */
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
-    /* Ikona strelice u karticama */
-    .card-arrow-icon {
-        transition: transform 0.3s ease;
-    }
-    .course-card.active .card-arrow-icon {
-        transform: rotate(180deg); 
-    }
+    .card-arrow-icon { transition: transform 0.3s ease; }
+    .course-card.active .card-arrow-icon { transform: rotate(180deg); }
 
     /* --- CONTAINER ZA DETALJE KURSEVA --- */
     .course-details-container {
@@ -300,9 +247,9 @@
 
     /* --- POJEDINAČNI DETALJI KURSEVA --- */
     .course-details-section {
-      background-color: #fff; /* Detalji kurseva ostaju beli */
+      background-color: #fff;
       border-radius: 12px;
-      border-left: 5px solid var(--primary-custom); /* Border-left sada koristi custom primarnu boju */
+      border-left: 5px solid var(--primary-custom);
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       
       max-height: 0;       
@@ -318,24 +265,17 @@
       z-index: 10; 
     }
 
-    /* Klasa za prikazivanje i animaciju detalja */
     .course-details-section.is-visible {
-      max-height: 600px; /* Povećaj ako PDF dugmad dodaju visinu */
+      max-height: 600px;
       opacity: 1;
       transform: translateY(0);
       margin-bottom: 1.5rem; 
     }
 
-    /* Responsivnost za detalje kurseva - centriranje teksta na mobilnom */
     @media (max-width: 767px) { 
         .course-details-section .col-md-8,
-        .course-details-section .col-md-4 {
-            text-align: center;
-        }
-        .course-details-section .list-unstyled {
-            text-align: left; 
-            display: inline-block; 
-        }
+        .course-details-section .col-md-4 { text-align: center; }
+        .course-details-section .list-unstyled { text-align: left; display: inline-block; }
         .course-details-section .border-start {
             border-left: none !important; 
             border-top: 1px solid #eee; 
@@ -345,18 +285,13 @@
     }
 
     /* --- Kontakt Sekcija --- */
-    .contact-info .text-dark {
-        color: var(--dark-text) !important;
-    }
-    .contact-info .text-muted {
-        color: var(--muted-text) !important;
-    }
+    .contact-info .text-dark { color: var(--dark-text) !important; }
+    .contact-info .text-muted { color: var(--muted-text) !important; }
   </style>
 </head>
 <body>
 
 <!-- 1. NAVIGATION -->
-<!-- Uklonjena klasa "py-3" da bismo ručno kontrolisali visinu navbar-a u CSS-u -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNavbar"> 
   <div class="container">
     <a class="navbar-brand" href="#">
@@ -391,7 +326,6 @@
 			Personalizovani časovi prilagođeni tvom tempu. Bez stresa, kroz razgovor i zanimljive teme.
 		</p>
 
-        
         <div class="d-flex flex-column flex-sm-row gap-3">
 			<a href="#kursevi" class="btn btn-primary btn-lg rounded-pill px-5 shadow hover-lift">Izaberi Kurs</a>
 			<a href="#kontakt" class="btn btn-outline-dark btn-lg rounded-pill px-4">Kontakt</a>
@@ -412,7 +346,6 @@
 
     <!-- Cards Row -->
     <div class="row g-4">
-      
       <!-- Card 1 -->
       <div class="col-md-4 reveal reveal-delay-1">
         <div id="card-a1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-a1', this, true)">
@@ -453,9 +386,8 @@
       </div>
     </div>
 
-    <!-- Hidden Details Area (ADDED class "course-details-container") -->
+    <!-- Hidden Details Area -->
     <div class="course-details-container"> 
-      
       <!-- Detail 1 -->
       <div id="detail-a1" class="course-details-section p-5"> 
         <div class="row align-items-center">
@@ -470,8 +402,7 @@
             </div>
             <div class="col-md-4 text-center border-start">
                 <p class="text-muted fst-italic">"Primer lekcije: Role-play naručivanja hrane u restoranu."</p>
-                <div class="d-grid gap-2"> <!-- Dodat div za slaganje dugmadi -->
-                    <!-- Dodato dugme za PDF -->
+                <div class="d-grid gap-2">
                     <a href="assets/pdf/example-a1.pdf" target="_blank" class="btn btn-outline-primary rounded-pill w-100 mt-2">
                         <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
                     </a>
@@ -495,8 +426,7 @@
             </div>
             <div class="col-md-4 text-center border-start">
                 <p class="text-muted fst-italic">"Primer lekcije: Debata o društvenim mrežama."</p>
-                <div class="d-grid gap-2"> <!-- Dodat div za slaganje dugmadi -->
-                    <!-- Dodato dugme za PDF -->
+                <div class="d-grid gap-2">
                     <a href="assets/pdf/example-b1.pdf" target="_blank" class="btn btn-outline-success rounded-pill w-100 mt-2">
                         <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
                     </a>
@@ -520,8 +450,7 @@
             </div>
             <div class="col-md-4 text-center border-start">
                 <p class="text-muted fst-italic">"Primer lekcije: The Elevator Pitch - prodaj svoju ideju."</p>
-                <div class="d-grid gap-2"> <!-- Dodat div za slaganje dugmadi -->
-                    <!-- Dodato dugme za PDF -->
+                <div class="d-grid gap-2">
                     <a href="assets/pdf/example-c1.pdf" target="_blank" class="btn btn-outline-warning rounded-pill w-100 mt-2 text-dark">
                         <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
                     </a>
@@ -530,7 +459,6 @@
             </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -612,8 +540,21 @@
 					<textarea name="message" class="form-control bg-light border-0 p-3" rows="4" placeholder="Napiši mi ukratko šta ti je cilj..."></textarea>
 				  </div>
 
+                  <!-- SECURITY: HONEYPOT FIELD (Nevidljivo za korisnike, vidljivo botovima) -->
+                  <div style="display: none; opacity: 0; position: absolute; left: -9999px;">
+                    <label>If you are human, leave this field blank.</label>
+                    <input type="text" name="bot_check" id="bot_check" tabindex="-1" autocomplete="off">
+                  </div>
+				  
+				  
+				  <div class="mb-4">
+					<!-- Zameni TVOJ_SITE_KEY sa pravim ključem od Google-a -->
+					<div class="g-recaptcha" data-sitekey="6LfAFFQsAAAAAHCljH3RsHQ1gY8e5J6MWyg8pO-A"></div> 
+				  </div>
+
 				  <div class="d-grid">
-					<button type="submit" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold shadow hover-lift">
+                    <!-- Dodat ID dugmetu za manipulaciju kroz JS -->
+					<button type="submit" id="submit-btn" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold shadow hover-lift">
 					  Pošalji Upit
 					</button>
 				  </div>
@@ -658,7 +599,6 @@
   })();
 </script>
 
-
 <script>
   // Funkcija za dinamičko podešavanje paddinga na body-ju i scroll-padding-top na html-u
   function adjustNavbarOffset() {
@@ -689,12 +629,10 @@
     observer.observe(el);
   });
 
-  // 2. COURSE DETAILS TOGGLE - POBOLJŠANO PONAŠANJE KOD SVIH SCENARIJA
-  const animationDuration = 500; // Trajanje najduže CSS tranzicije (max-height)
-  let currentScrollTimeout = null; // Globalni tajmer za skrolovanje
-  const detailsContainer = document.querySelector('.course-details-container'); // Dohvati kontejner za detalje
-
-  // Mapa za čuvanje timeouta za skrivanje elemenata, da ne bi dolazilo do konflikta
+  // 2. COURSE DETAILS TOGGLE
+  const animationDuration = 500; 
+  let currentScrollTimeout = null; 
+  const detailsContainer = document.querySelector('.course-details-container'); 
   const hideTimeouts = {}; 
 
   function toggleCourse(detailId, clickedCard, doScroll = true) {
@@ -702,30 +640,24 @@
     const allCards = document.querySelectorAll('.course-card');
     const targetDetail = document.getElementById(detailId);
 
-    // --- Zatvori sve ostale detalje pre otvaranja novog ---
-    allCards.forEach(card => card.classList.remove('active')); // Deaktiviraj sve kartice
+    // Zatvori sve ostale detalje
+    allCards.forEach(card => card.classList.remove('active')); 
     
     details.forEach(detail => {
         if (detail.id !== detailId && detail.classList.contains('is-visible')) {
-            detail.classList.remove('is-visible'); // Pokreće animaciju zatvaranja
-            
-            // Osiguraj da se prethodni timeout za skrivanje ovog detalja obriše
+            detail.classList.remove('is-visible'); 
             if (hideTimeouts[detail.id]) {
                 clearTimeout(hideTimeouts[detail.id]);
             }
-            // Postavi display: none za ovaj detalj nakon njegove animacije
             hideTimeouts[detail.id] = setTimeout(() => {
                 detail.style.display = 'none';
                 delete hideTimeouts[detail.id];
-                // Proveri da li je ostala neka aktivna sekcija nakon zatvaranja
                 const anyActiveDetail = document.querySelector('.course-details-section.is-visible');
-                if (!anyActiveDetail && targetDetail.style.display === 'none') { // Dodatna provera za targetDetail
+                if (!anyActiveDetail && targetDetail.style.display === 'none') { 
                     detailsContainer.classList.remove('has-active-detail');
                 }
             }, animationDuration);
         } else if (detail.id !== detailId && detail.style.display !== 'none') {
-            // Ako element nije ciljani, nije is-visible, ali je display: block (što ne bi trebalo, ali za svaki slučaj)
-            // Odmah ga sakrij, jer ne želimo da zauzima prostor.
             if (hideTimeouts[detail.id]) {
                 clearTimeout(hideTimeouts[detail.id]);
                 delete hideTimeouts[detail.id];
@@ -734,45 +666,36 @@
         }
     });
 
-    // --- Otvaranje ciljanog detalja ---
-    // Pre nego što dodamo 'is-visible' klasu, postavimo display na 'block'
-    // ako je trenutno 'none'. To omogućava tranziciju.
-    if (hideTimeouts[detailId]) { // Ako postoji pending hide za ciljani element, obriši ga
+    // Otvaranje ciljanog detalja
+    if (hideTimeouts[detailId]) { 
         clearTimeout(hideTimeouts[detailId]);
         delete hideTimeouts[detailId];
     }
     
-    targetDetail.style.display = 'block'; // Element sada zauzima prostor
-    
-    // !!! KLJUČNA PROMENA: Forsiramo reflow !!!
-    // Pristupanje nekom svojstvu kao što je offsetHeight nateraće browser da izračuna layout
-    // pre nego što se dodeli is-visible klasa. Bez ovoga, animacija neće raditi.
+    targetDetail.style.display = 'block'; 
     targetDetail.offsetHeight; // Trigeruje reflow
     
-    clickedCard.classList.add('active'); // Aktiviraj karticu (rotira strelicu)
-    targetDetail.classList.add('is-visible'); // Pokreće animaciju otvaranja
-    detailsContainer.classList.add('has-active-detail'); // Dodaj klasu kontejneru da dobije margin-top
+    clickedCard.classList.add('active'); 
+    targetDetail.classList.add('is-visible'); 
+    detailsContainer.classList.add('has-active-detail'); 
 
-
-    // Očisti prethodni scroll timeout da bi novi mogao da se postavi
     if (currentScrollTimeout) {
         clearTimeout(currentScrollTimeout);
     }
     
-    // Skroluj do detalja nakon što se animacija otvaranja završi
+    // Skroluj do detalja
     if (doScroll) {
       currentScrollTimeout = setTimeout(() => {
-          // Visina navbar-a se uzima dinamički
           const navbarHeight = document.getElementById('mainNavbar').getBoundingClientRect().height; 
           const elementTop = targetDetail.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementTop - navbarHeight; // Uklonjen fiksni -20px offset
+          const offsetPosition = elementTop - navbarHeight; 
 
           window.scrollTo({
               top: offsetPosition,
               behavior: "smooth"
           });
           currentScrollTimeout = null; 
-      }, animationDuration + 50); // animationDuration + mali buffer (npr. 50ms) za pouzdanost
+      }, animationDuration + 50); 
     }
   }
 
@@ -786,15 +709,11 @@
     }
   });
 
-  // 4. INICIJALIZACIJA I DYNAMIC NAVBAR OFFSET
+  // 4. INICIJALIZACIJA
   document.addEventListener('DOMContentLoaded', () => {
-    // Pozovi funkciju za podešavanje ofseta navbara odmah nakon što je DOM spreman
     adjustNavbarOffset(); 
-
-    // Podesi i na resize event, da se prilagodi promenama veličine prozora (npr. rotacija telefona)
     window.addEventListener('resize', adjustNavbarOffset);
 
-    // Dodatno, pozovi adjustNavbarOffset kada se Bootstrap collapse meni otvori/zatvori
     const navMenuElement = document.getElementById('navMenu');
     if (navMenuElement) {
         navMenuElement.addEventListener('shown.bs.collapse', adjustNavbarOffset);
@@ -806,42 +725,29 @@
     const detailsContainer = document.querySelector('.course-details-container');
 
     if (firstCard && firstDetail && detailsContainer) {
-      // Privremeno isključite tranzicije za inicijalno podešavanje
       firstDetail.style.transition = 'none';
-
-      // Odmah postavite željeno stanje
       firstCard.classList.add('active');
       firstDetail.style.display = 'block';
       firstDetail.classList.add('is-visible');
       detailsContainer.classList.add('has-active-detail');
-
-      // Forsirajte reflow. Ovo je važno kako bi brauzer prihvatio promene stila
-      // pre nego što se tranzicije ponovo uključe.
       firstDetail.offsetHeight; 
-      
-      // Ponovo uključite tranzicije. Koristimo requestAnimationFrame
-      // da bi se osiguralo da se ovo dešava nakon što je brauzer prikazao inicijalno stanje.
       requestAnimationFrame(() => {
         firstDetail.style.transition = ''; 
       });
     }
 
-    // --- AŽURIRANI KOD ZA ZATVARANJE NAV MENIJA ---
+    // Zatvaranje menija
     const navbarToggler = document.querySelector('.navbar-toggler');
-    // const navMenu je već definisan iznad
     const clickableNavItems = navMenu.querySelectorAll('.navbar-nav a'); 
 
-    // Zatvaranje menija kada se klikne van njega
     document.body.addEventListener('click', function(event) {
         if (navMenu.classList.contains('show') && 
             !navMenu.contains(event.target) && 
             !navbarToggler.contains(event.target)) {
-            
             navbarToggler.click(); 
         }
     });
 
-    // Zatvaranje menija kada se klikne na link ILI dugme unutar njega
     clickableNavItems.forEach(item => {
         item.addEventListener('click', function() {
             if (navMenu.classList.contains('show')) {
@@ -849,20 +755,36 @@
             }
         });
     });
-    // --- KRAJ KODA ZA ZATVARANJE NAV MENIJA ---
-
   });
 </script>
+
+<!-- AŽURIRANA SKRIPTA ZA SLANJE EMAIL-A (SA HONEYPOT ZAŠTITOM) -->
 <script>
   const kontaktForma = document.getElementById('kontakt-forma');
   const statusPoruke = document.getElementById('status-poruke');
+  const submitBtn = document.getElementById('submit-btn');
 
   kontaktForma.addEventListener('submit', function(e) {
     e.preventDefault();
 
+    // 1. SECURITY CHECK (Honeypot)
+    // Ako bot popuni skriveno polje, prekidamo funkciju
+    const botCheck = document.getElementById('bot_check').value;
+    if (botCheck !== "") {
+        console.warn("Spam attempt blocked.");
+        return; 
+    }
+
+    // 2. UI FEEDBACK (Sprečavanje duplog klika i vizuelni prikaz)
     statusPoruke.classList.remove('text-success', 'text-danger');
     statusPoruke.textContent = "Šaljem poruku...";
+    
+    // Onemogući dugme i dodaj spinner
+    submitBtn.disabled = true;
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Slanje...';
 
+    // 3. SLANJE NA EMAILJS
     emailjs.sendForm('service_cl4fw3d', 'template_e3mln5p', this)
       .then(function() {
         statusPoruke.classList.add('text-success');
@@ -872,10 +794,14 @@
         console.log('EmailJS greška:', error);
         statusPoruke.classList.add('text-danger');
         statusPoruke.textContent = "Došlo je do greške pri slanju. Pokušaj ponovo ili piši direktno na email.";
+      })
+      .finally(function() {
+        // Vraćanje dugmeta u normalu u svakom slučaju (uspeh ili greška)
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
       });
   });
 </script>
-
 
 </body>
 </html>
