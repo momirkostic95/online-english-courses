@@ -15,13 +15,13 @@
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
-  <!-- Google reCAPTCHA skripta - mora biti ovde, pre JS koji je koristi -->
+  <!-- Google reCAPTCHA skripta -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
   <style>
     /* --- CUSTOM CSS VARIABLES --- */
     :root {
-      --primary-custom: #3482B7; /* Professional Blue/Teal */
+      --primary-custom: #3482B7; 
       --primary-custom-rgb: 52, 130, 183;
       --light-background: #FDFBF8;
       --light-background-rgb: 253, 251, 248;
@@ -76,13 +76,15 @@
     
     .text-dark { color: var(--dark-text) !important; }
     .text-secondary { color: var(--muted-text) !important; }
+    
+    /* Background subtle custom class */
+    .bg-primary-subtle { background-color: #F2F8FC !important; }
 
     /* Forms */
     .form-control.bg-light, .form-select.bg-light {
         background-color: var(--light-background) !important;
         border: 1px solid rgba(var(--muted-text-rgb, 108, 117, 125), 0.25);
     }
-
 
     /* --- NAVIGATION --- */
     .navbar {
@@ -181,7 +183,6 @@
 		.hero-text { font-size: 1rem !important; }
     }
 
-
     /* --- ANIMATION CLASSES --- */
     .reveal {
       opacity: 0;
@@ -267,21 +268,51 @@
     }
 
     .course-details-section.is-visible {
-      max-height: 600px;
+      max-height: 1000px; 
       opacity: 1;
       transform: translateY(0);
       margin-bottom: 1.5rem; 
     }
 
+    /* Interaktivna lista hover */
+    .interactive-item:hover {
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+    }
+
     @media (max-width: 767px) { 
         .course-details-section .col-md-8,
-        .course-details-section .col-md-4 { text-align: center; }
+        .course-details-section .col-md-4,
+        .course-details-section .col-md-7,
+        .course-details-section .col-md-5 { text-align: center; }
+        
         .course-details-section .list-unstyled { text-align: left; display: inline-block; }
+        
         .course-details-section .border-start {
             border-left: none !important; 
             border-top: 1px solid #eee; 
             padding-top: 1rem;
             margin-top: 1rem;
+        }
+
+        /* --- MOBILE FIX ZA DETALJE KURSEVA --- */
+        /* Omogućava da sekcija raste koliko treba na mobilnom */
+        .course-details-section.is-visible {
+            max-height: 2500px !important; 
+            overflow: visible !important; 
+        }
+        
+        /* Dodatni razmak između liste i slike na mobilnom */
+        .mobile-spacer {
+            margin-top: 2rem !important;
+            margin-bottom: 1rem !important;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Smanji padding na mobilnom da ne zauzima previše mesta */
+        .course-details-section {
+            padding: 1.5rem !important;
         }
     }
 
@@ -296,7 +327,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNavbar"> 
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="images/logo.png" alt="MasterEnglish Logo">
+      <img src="images/logo1.png" alt="MasterEnglish Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -389,25 +420,77 @@
 
     <!-- Hidden Details Area -->
     <div class="course-details-container"> 
-      <!-- Detail 1 -->
+      
+      <!-- *** IZMENJEN DETAIL 1 (Početni nivo) - ŠIRE DESNO *** -->
       <div id="detail-a1" class="course-details-section p-5"> 
         <div class="row align-items-center">
-            <div class="col-md-8">
+            
+            <!-- LEVA STRANA: Tekst i Check lista (Sada col-md-5) -->
+            <div class="col-md-5"> 
                 <h3 class="text-primary fw-bold mb-3">Početni Nivo (General English)</h3>
-                <p class="lead">Idealno za one koji "znaju malo, ali ne smeju da progovore".</p>
-                <ul class="list-unstyled mt-4">
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Osnovna vremena (Present & Past Simple)</li>
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Snalaženje u inostranstvu (Hotel, Restoran)</li>
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Prevazilaženje jezičke barijere</li>
-                </ul>
+                <p class="lead text-secondary">Ovaj kurs je dizajniran da vas oslobodi straha od grešaka. Kliknite na teme ispod da vidite primere materijala:</p>
+                
+                <!-- CHECK LISTA (Interaktivna) -->
+                <div class="d-flex flex-column gap-3 mt-4" id="a1-topics-list">
+                    
+                    <!-- Prvi element (Default checked) -->
+                    <div class="interactive-item p-3 border border-primary rounded shadow-sm d-flex align-items-center bg-primary-subtle" 
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-check-circle-fill text-primary fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">Gramatika bez bubanja</h6>
+                            <small class="text-muted">Učenje kroz vizuelne primere i mape uma.</small>
+                        </div>
+                    </div>
+
+                    <!-- Drugi element -->
+                    <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">Snalaženje u inostranstvu</h6>
+                            <small class="text-muted">Simulacije razgovora: hotel, aerodrom, restoran.</small>
+                        </div>
+                    </div>
+
+                     <!-- Treći element -->
+                    <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">Video i Audio vežbe</h6>
+                            <small class="text-muted">Vežbanje slušanja kroz isečke iz popularnih serija.</small>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="col-md-4 text-center border-start">
-                <p class="text-muted fst-italic">"Primer lekcije: Role-play naručivanja hrane u restoranu."</p>
+
+            <!-- DESNA STRANA: Slika, TEKST i dugmići (Sada col-md-7) -->
+            <div class="col-md-7 text-center ps-md-4 mobile-spacer">
+                
+                <!-- Slika koja se menja -->
+                <div class="mb-3 position-relative">
+                    <img id="a1-preview-image" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" 
+                         alt="Prikaz lekcije" 
+                         class="img-fluid rounded shadow-lg border border-3 border-white w-100" 
+                         style="transition: opacity 0.3s ease; object-fit: cover; max-height: 250px;"> 
+                </div>
+
+                <!-- TEKST ISPOD SLIKE -->
+                <div id="a1-preview-text" class="mb-4 text-muted fst-italic px-2" style="font-size: 0.95rem; transition: opacity 0.3s ease;">
+                    Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.
+                </div>
+                
+                <!-- Dugmići -->
                 <div class="d-grid gap-2">
-                    <a href="assets/pdf/example-a1.pdf" target="_blank" class="btn btn-outline-primary rounded-pill w-100 mt-2">
+                    <a href="assets/pdf/example-a1.pdf" target="_blank" class="btn btn-outline-primary rounded-pill w-100">
                         <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
                     </a>
-					<a href="#kontakt" class="btn btn-primary rounded-pill w-100">Prijavi se</a>
+					<a href="#kontakt" class="btn btn-primary rounded-pill w-100 shadow hover-lift">Prijavi se</a>
                 </div>
             </div>
         </div>
@@ -755,9 +838,53 @@
         });
     });
   });
+
+  // --- NOVA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA TEKSTOM) ---
+  function updateA1Display(imgUrl, clickedElement, descriptionText) {
+    // 1. Resetuj sve elemente u listi
+    const listContainer = document.getElementById('a1-topics-list');
+    const items = listContainer.querySelectorAll('.interactive-item');
+    
+    items.forEach(item => {
+        // Resetuj stil pozadine i bordera
+        item.classList.remove('bg-primary-subtle', 'border-primary');
+        item.classList.add('border-light', 'bg-white'); // Vrati na belo
+        
+        // Resetuj ikonicu na prazan krug
+        const icon = item.querySelector('i');
+        icon.className = 'bi bi-circle text-muted fs-4 me-3 flex-shrink-0';
+    });
+
+    // 2. Aktiviraj kliknuti element
+    clickedElement.classList.remove('border-light', 'bg-white');
+    clickedElement.classList.add('bg-primary-subtle', 'border-primary');
+    
+    // Promeni ikonicu na check
+    const activeIcon = clickedElement.querySelector('i');
+    activeIcon.className = 'bi bi-check-circle-fill text-primary fs-4 me-3 flex-shrink-0';
+
+    // 3. Promeni sliku i TEKST sa fade efektom
+    const imgElement = document.getElementById('a1-preview-image');
+    const textElement = document.getElementById('a1-preview-text');
+    
+    imgElement.style.opacity = 0;
+    textElement.style.opacity = 0;
+    
+    setTimeout(() => {
+        // Promeni sliku
+        imgElement.src = imgUrl;
+        imgElement.onload = () => {
+            imgElement.style.opacity = 1;
+        };
+
+        // Promeni tekst
+        textElement.textContent = descriptionText;
+        textElement.style.opacity = 1;
+    }, 200);
+  }
 </script>
 
-<!-- AŽURIRANA SKRIPTA ZA SLANJE EMAIL-A (SA HONEYPOT I RECAPTCHA ZAŠTITOM) -->
+<!-- SKRIPTA ZA SLANJE EMAIL-A -->
 <script>
   const kontaktForma = document.getElementById('kontakt-forma');
   const statusPoruke = document.getElementById('status-poruke');
@@ -774,25 +901,21 @@
     const botCheck = document.getElementById('bot_check').value;
     if (botCheck !== "") {
         console.warn("Spam attempt blocked by honeypot.");
-        // Ne prikazujemo grešku korisniku da ne bismo otkrili honeypot
         return; 
     }
 
     // 2. RECAPTCHA CHECK
-    // grecaptcha je globalni objekat koji dolazi sa Google reCAPTCHA skriptom
     const recaptchaResponse = grecaptcha.getResponse(); 
-    if (recaptchaResponse.length === 0) { // Provera da li je odgovor prazan (nije čekirano)
+    if (recaptchaResponse.length === 0) { 
         statusPoruke.classList.add('text-danger');
         statusPoruke.textContent = "Molimo potvrdite da niste robot (reCAPTCHA).";
-        return; // Prekini slanje forme
+        return; 
     }
 
-    // 3. UI FEEDBACK (Sprečavanje duplog klika i vizuelni prikaz)
+    // 3. UI FEEDBACK
     statusPoruke.textContent = "Šaljem poruku...";
-    
-    // Onemogući dugme i dodaj spinner
     submitBtn.disabled = true;
-    const originalBtnText = submitBtn.innerHTML; // Sačuvaj originalni tekst dugmeta
+    const originalBtnText = submitBtn.innerHTML; 
     submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Slanje...';
 
     // 4. SLANJE NA EMAILJS
@@ -801,15 +924,14 @@
         statusPoruke.classList.add('text-success');
         statusPoruke.textContent = "Poruka je uspešno poslata! Javiću ti se u roku od 24h.";
         kontaktForma.reset();
-        grecaptcha.reset(); // Resetuj reCAPTCHA nakon uspešnog slanja
+        grecaptcha.reset(); 
       }, function(error) {
         console.log('EmailJS greška:', error);
         statusPoruke.classList.add('text-danger');
         statusPoruke.textContent = "Došlo je do greške pri slanju. Pokušaj ponovo ili piši direktno na email.";
-        grecaptcha.reset(); // Resetuj reCAPTCHA nakon neuspešnog slanja
+        grecaptcha.reset(); 
       })
       .finally(function() {
-        // Vraćanje dugmeta u normalu u svakom slučaju (uspeh ili greška)
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
       });
