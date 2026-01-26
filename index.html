@@ -29,6 +29,8 @@
       --muted-text: #6c757d;
       --card-bg-hover: #F2F8FC;
       --hero-bg-color: #f4efd8;
+      /* Ova promenljiva više neće biti direktno korišćena za 'top' navbara, već je JS računa */
+      --top-bar-height-desktop: 35px; 
     }
 
     /* --- GENERAL STYLES --- */
@@ -38,6 +40,8 @@
       width: 100%; 
       margin: 0;
       padding: 0;
+      /* scroll-padding-top će se dinamički ažurirati JS-om */
+      scroll-padding-top: 0px; 
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -45,7 +49,64 @@
       color: var(--dark-text);
       overflow-x: hidden; 
       width: 100%; 
+      /* padding-top će se dinamički ažurirati JS-om */
+      padding-top: 0px; 
     }
+    
+    /* --- NOVI TOP BAR STILOVI --- */
+    #topBar {
+        background-color: #222; /* Tamna pozadina */
+        color: #fff; /* Beli tekst */
+        height: var(--top-bar-height-desktop); /* Fiksna visina za desktop */
+        display: flex;
+        align-items: center;
+        font-size: 0.85rem;
+        z-index: 1050; /* Iznad navigacionog bara (1040) */
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        transition: all 0.3s ease;
+    }
+    #topBar a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    #topBar a:hover {
+        color: #fff;
+    }
+    #topBar .container {
+        display: flex;
+        justify-content: flex-end; /* Poravnaj elemente desno */
+        align-items: center;
+        height: 100%;
+    }
+    #topBar .contact-item {
+        display: flex;
+        align-items: center;
+        margin-left: 1.5rem; /* Razmak između elemenata */
+    }
+    #topBar .contact-item i {
+        margin-right: 0.5rem;
+        color: var(--primary-custom); /* Koristi primarnu boju za ikone */
+    }
+
+    /* Prilagođavanje top bara za mobilne uređaje */
+    @media (max-width: 767px) {
+        #topBar {
+            height: auto; /* Dozvoli da se visina prilagodi sadržaju */
+            padding: 5px 0; /* Mali vertikalni padding */
+        }
+        #topBar .container {
+            flex-direction: column; /* Složi elemente vertikalno */
+            justify-content: center;
+        }
+        #topBar .contact-item {
+            margin: 2px 0; /* Manji margin na mobilnom */
+        }
+    }
+
 
     img, video, iframe, embed, object {
       max-width: 100%;
@@ -93,7 +154,14 @@
       min-height: 60px;
       padding-top: 7.5px;
       padding-bottom: 7.5px;
+      z-index: 1040; /* Niži od top bara, viši od sadržaja */
+      position: fixed; /* Održavamo ga fiksiranim na svim veličinama ekrana */
+      width: 100%;
+      /* top pozicija će biti dinamički postavljena JavaScriptom */
+      left: 0; /* Osiguravamo da se uvek nalazi uz levu ivicu */
     }
+    /* Uklonili smo @media blok za .navbar, jer se sada pozicija rukuje JS-om */
+
     .navbar.shadow {
         background-color: rgba(var(--light-background-rgb), 0.98);
     }
@@ -323,8 +391,23 @@
 </head>
 <body>
 
+<!-- NOVO: TOP BAR SA TELEFONOM I EMAILOM -->
+<div id="topBar">
+    <div class="container">
+        <div class="contact-item">
+            <i class="bi bi-telephone-fill"></i> 
+            <a href="tel:+381601234567">+381 60 123 4567</a>
+        </div>
+        <div class="contact-item">
+            <i class="bi bi-envelope-fill"></i> 
+            <a href="mailto:info@mojsajt.com">info@mojsajt.com</a>
+        </div>
+    </div>
+</div>
+
+
 <!-- 1. NAVIGATION -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNavbar"> 
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm" id="mainNavbar"> 
   <div class="container">
     <a class="navbar-brand" href="#">
       <img src="images/logo.png" alt="MasterEnglish Logo">
@@ -371,7 +454,6 @@
 <section id="kursevi" class="py-5 mt-5">
   <div class="container">
     <div class="text-center mb-5 reveal">
-      <h6 class="text-primary fw-bold text-uppercase ls-2">Edukacija</h6>
       <h2 class="fw-bold display-5">Naši Kursevi</h2>
       <p class="text-secondary w-75 mx-auto">Klikni na karticu kursa da vidiš detaljan plan i program.</p>
     </div>
@@ -684,13 +766,31 @@
 <script>
   // Funkcija za dinamičko podešavanje paddinga na body-ju i scroll-padding-top na html-u
   function adjustNavbarOffset() {
+    const topBar = document.getElementById('topBar');
     const mainNavbar = document.getElementById('mainNavbar');
-    if (mainNavbar) {
-      const navbarHeight = mainNavbar.getBoundingClientRect().height; 
-      // Ovi delovi koda su bili zakomentarisani, pa ih ostavljam takvim
-      // document.body.style.paddingTop = navbarHeight + 'px';
-      // document.documentElement.style.scrollPaddingTop = navbarHeight + 'px';
+    let totalHeaderHeight = 0;
+    let topBarHeight = 0;
+
+    if (topBar) {
+        // Izračunavamo visinu top bara
+        topBarHeight = topBar.getBoundingClientRect().height;
+        totalHeaderHeight += topBarHeight;
     }
+
+    if (mainNavbar) {
+      // Postavljamo top poziciju navigacionog bara direktno ispod top bara
+      mainNavbar.style.top = topBarHeight + 'px';
+      mainNavbar.style.position = 'fixed'; // Osiguravamo da je uvek fiksiran
+      mainNavbar.style.width = '100%';     // Osiguravamo punu širinu
+      mainNavbar.style.left = '0';          // Osiguravamo da je na levoj ivici
+
+      // Dodajemo visinu navigacionog bara ukupnoj visini zaglavlja
+      totalHeaderHeight += mainNavbar.getBoundingClientRect().height;
+    }
+
+    // Primeni ukupnu visinu zaglavlja kao padding na body i scroll-padding-top na html
+    document.body.style.paddingTop = (totalHeaderHeight - topBarHeight) + 'px';
+    document.documentElement.style.scrollPaddingTop = (totalHeaderHeight - topBarHeight) + 'px';
   }
 
   // 1. SCROLL ANIMATIONS (Intersection Observer)
@@ -768,9 +868,15 @@
     // Skroluj do detalja
     if (doScroll) {
       currentScrollTimeout = setTimeout(() => {
-          const navbarHeight = document.getElementById('mainNavbar').getBoundingClientRect().height; 
+          // Ponovo izračunaj ukupnu visinu fiksnog zaglavlja za skrolovanje
+          let headerOffset = 0;
+          const topBarElement = document.getElementById('topBar');
+          const mainNavbarElement = document.getElementById('mainNavbar');
+          if (topBarElement) headerOffset += topBarElement.getBoundingClientRect().height;
+          if (mainNavbarElement) headerOffset += mainNavbarElement.getBoundingClientRect().height;
+
           const elementTop = targetDetail.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementTop - navbarHeight; 
+          const offsetPosition = elementTop - headerOffset; 
 
           window.scrollTo({
               top: offsetPosition,
@@ -781,10 +887,12 @@
     }
   }
 
-  // 3. NAVBAR SCROLL EFFECT
+  // 3. NAVBAR SCROLL EFFECT (za senku)
   window.addEventListener('scroll', function() {
     const nav = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
+    // Senka se aktivira nakon što se proskroluje preko visine top bara
+    const topBarHeight = document.getElementById('topBar') ? document.getElementById('topBar').getBoundingClientRect().height : 0;
+    if (window.scrollY > topBarHeight) { 
       nav.classList.add('shadow');
     } else {
       nav.classList.remove('shadow');
@@ -818,25 +926,28 @@
       });
     }
 
-    // Zatvaranje menija
+    // Zatvaranje menija na klik izvan
     const navbarToggler = document.querySelector('.navbar-toggler');
-    const clickableNavItems = navMenu.querySelectorAll('.navbar-nav a'); 
+    const navMenu = document.getElementById('navMenu');
+    if (navMenu) {
+        const clickableNavItems = navMenu.querySelectorAll('.navbar-nav a'); 
 
-    document.body.addEventListener('click', function(event) {
-        if (navMenu.classList.contains('show') && 
-            !navMenu.contains(event.target) && 
-            !navbarToggler.contains(event.target)) {
-            navbarToggler.click(); 
-        }
-    });
-
-    clickableNavItems.forEach(item => {
-        item.addEventListener('click', function() {
-            if (navMenu.classList.contains('show')) {
+        document.body.addEventListener('click', function(event) {
+            if (navMenu.classList.contains('show') && 
+                !navMenu.contains(event.target) && 
+                !navbarToggler.contains(event.target)) {
                 navbarToggler.click(); 
             }
         });
-    });
+
+        clickableNavItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (navMenu.classList.contains('show')) {
+                    navbarToggler.click(); 
+                }
+            });
+        });
+    }
   });
 
   // --- NOVA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA TEKSTOM I SKROLOM) ---
@@ -890,10 +1001,16 @@
         if (window.innerWidth < 768 && rightContentArea) {
             // Sačekaj malo duže od fade-in animacije da se sadržaj prikaže, pa onda skroluj
             setTimeout(() => {
-                const navbarHeight = document.getElementById('mainNavbar').getBoundingClientRect().height;
+                // Ponovo izračunaj ukupnu visinu fiksnog zaglavlja za skrolovanje
+                let headerOffset = 0;
+                const topBarElement = document.getElementById('topBar');
+                const mainNavbarElement = document.getElementById('mainNavbar');
+                if (topBarElement) headerOffset += topBarElement.getBoundingClientRect().height;
+                if (mainNavbarElement) headerOffset += mainNavbarElement.getBoundingClientRect().height;
+
                 const elementTop = rightContentArea.getBoundingClientRect().top + window.pageYOffset;
                 // Dodaj malo dodatnog paddinga da sadržaj ne bude previše zalepljen za navigacioni bar
-                const offsetPosition = elementTop - navbarHeight - 20; 
+                const offsetPosition = elementTop - headerOffset - 20; 
 
                 window.scrollTo({
                     top: offsetPosition,
