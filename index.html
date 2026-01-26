@@ -29,7 +29,6 @@
       --muted-text: #6c757d;
       --card-bg-hover: #F2F8FC;
       --hero-bg-color: #f4efd8;
-      /* Ova promenljiva više neće biti direktno korišćena za 'top' navbara, već je JS računa */
       --top-bar-height-desktop: 35px; 
     }
 
@@ -40,7 +39,6 @@
       width: 100%; 
       margin: 0;
       padding: 0;
-      /* scroll-padding-top će se dinamički ažurirati JS-om */
       scroll-padding-top: 0px; 
     }
     body {
@@ -49,7 +47,6 @@
       color: var(--dark-text);
       overflow-x: hidden; 
       width: 100%; 
-      /* padding-top će se dinamički ažurirati JS-om */
       padding-top: 0px; 
     }
     
@@ -85,7 +82,7 @@
     #topBar .contact-item {
         display: flex;
         align-items: center;
-        margin-left: 1.5rem; /* Razmak između elemenata */
+        margin-left: 1.5rem; /* Razmak između elemenata na desktopu */
     }
     #topBar .contact-item i {
         margin-right: 0.5rem;
@@ -99,11 +96,14 @@
             padding: 5px 0; /* Mali vertikalni padding */
         }
         #topBar .container {
-            flex-direction: column; /* Složi elemente vertikalno */
-            justify-content: center;
+            flex-direction: row; /* Sada će biti u redu */
+            flex-wrap: wrap;    /* Dozvoli prelom redova ako je predugačko */
+            justify-content: center; /* Centriraj elemente horizontalno */
+            padding-left: 10px; /* Dodaj malo paddinga sa strane da se ne lepe za ivicu */
+            padding-right: 10px;
         }
         #topBar .contact-item {
-            margin: 2px 0; /* Manji margin na mobilnom */
+            margin: 2px 8px; /* Mali margin gore/dole i levo/desno */
         }
     }
 
@@ -454,6 +454,7 @@
 <section id="kursevi" class="py-5 mt-5">
   <div class="container">
     <div class="text-center mb-5 reveal">
+      <h6 class="text-primary fw-bold text-uppercase ls-2">Edukacija</h6>
       <h2 class="fw-bold display-5">Naši Kursevi</h2>
       <p class="text-secondary w-75 mx-auto">Klikni na karticu kursa da vidiš detaljan plan i program.</p>
     </div>
@@ -789,8 +790,8 @@
     }
 
     // Primeni ukupnu visinu zaglavlja kao padding na body i scroll-padding-top na html
-    document.body.style.paddingTop = (totalHeaderHeight - topBarHeight) + 'px';
-    document.documentElement.style.scrollPaddingTop = (totalHeaderHeight - topBarHeight) + 'px';
+    document.body.style.paddingTop = totalHeaderHeight + 'px';
+    document.documentElement.style.scrollPaddingTop = totalHeaderHeight + 'px';
   }
 
   // 1. SCROLL ANIMATIONS (Intersection Observer)
