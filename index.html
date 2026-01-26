@@ -470,7 +470,7 @@
             </div>
 
             <!-- DESNA STRANA: Slika, TEKST i dugmići (Sada col-md-7) -->
-            <div class="col-md-7 text-center ps-md-4 mobile-spacer">
+            <div class="col-md-7 text-center ps-md-4 mobile-spacer" id="a1-right-content-area">
                 
                 <!-- Slika koja se menja -->
                 <div class="mb-3 position-relative">
@@ -631,7 +631,7 @@
                   </div>
 				  
 				  <div class="mb-4">
-					<!-- TVOJ_SITE_KEY_OVDE ZAMENJEN KLJUČEM IZ TVOG HTML-A -->
+					<!-- TVOJ_SITE_KEY_OVDE ZAMENJEN KLJUČEM IZ TVOJ HTML-A -->
 					<div class="g-recaptcha" data-sitekey="6LfAFFQsAAAAAHCljH3RsHQ1gY8e5J6MWyg8pO-A"></div> 
 				  </div>
 
@@ -839,7 +839,7 @@
     });
   });
 
-  // --- NOVA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA TEKSTOM) ---
+  // --- NOVA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA TEKSTOM I SKROLOM) ---
   function updateA1Display(imgUrl, clickedElement, descriptionText) {
     // 1. Resetuj sve elemente u listi
     const listContainer = document.getElementById('a1-topics-list');
@@ -866,21 +866,42 @@
     // 3. Promeni sliku i TEKST sa fade efektom
     const imgElement = document.getElementById('a1-preview-image');
     const textElement = document.getElementById('a1-preview-text');
+    // Novi element za targetovanje: kontejner slike, teksta i dugmića
+    const rightContentArea = document.getElementById('a1-right-content-area'); 
     
+    // Zapocni fade-out animaciju za trenutni sadržaj
     imgElement.style.opacity = 0;
     textElement.style.opacity = 0;
     
+    // Sačekaj da se fade-out završi (300ms, koliko je definisano u CSS tranziciji)
     setTimeout(() => {
-        // Promeni sliku
+        // Promeni sadržaj (sliku i tekst)
         imgElement.src = imgUrl;
-        imgElement.onload = () => {
-            imgElement.style.opacity = 1;
-        };
-
-        // Promeni tekst
         textElement.textContent = descriptionText;
+
+        // Zapocni fade-in animaciju za novi sadržaj
+        // Ovo će aktivirati CSS tranziciju 'opacity 0.3s ease'
+        imgElement.style.opacity = 1;
         textElement.style.opacity = 1;
-    }, 200);
+
+        // --- LOGIKA ZA SKROLOVANJE NA MOBILNIM UREĐAJIMA ---
+        // Proveri da li je širina ekrana manja od 768px (standardna Bootstrap md breakpoint za mobilne uređaje)
+        // i da li postoji element za skrolovanje
+        if (window.innerWidth < 768 && rightContentArea) {
+            // Sačekaj malo duže od fade-in animacije da se sadržaj prikaže, pa onda skroluj
+            setTimeout(() => {
+                const navbarHeight = document.getElementById('mainNavbar').getBoundingClientRect().height;
+                const elementTop = rightContentArea.getBoundingClientRect().top + window.pageYOffset;
+                // Dodaj malo dodatnog paddinga da sadržaj ne bude previše zalepljen za navigacioni bar
+                const offsetPosition = elementTop - navbarHeight - 20; 
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }, 350); // 300ms za fade-in tranziciju + 50ms buffer
+        }
+    }, 300); // Vreme čekanja da se fade-out animacija završi
   }
 </script>
 
