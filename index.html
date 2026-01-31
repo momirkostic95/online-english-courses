@@ -278,6 +278,14 @@
         #o-nama .col-lg-6:last-child.reveal.active { transform: translateY(0) translateX(0); }
     }
 
+    /* --- ABOUT SECTION IMAGE FIX --- */
+    .about-img {
+        max-width: 75%; /* Makes image smaller (was 100%) */
+        display: block;
+        margin: 0 auto; /* Centers the image in its column */
+        border-radius: 0; /* REMOVED ROUNDING - NOW SHARP CORNERS */
+    }
+
     /* --- COURSE CARDS --- */
     .course-card {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -637,11 +645,18 @@
 <!-- 4. ABOUT SECTION -->
 <section id="o-nama" class="py-5 bg-light position-relative">
   <div class="container py-5">
-    <div class="row align-items-center text-center text-lg-start">
+    <!-- CHANGED: 'align-items-center' to 'align-items-start' to move text up -->
+    <div class="row align-items-start text-center text-lg-start">
+      
+      <!-- Image Column -->
       <div class="col-lg-6 mb-5 mb-lg-0 reveal">
-        <img src="images/professor_image.jpeg?q=80&w=800&auto=format&fit=crop" alt="Profesor" class="img-fluid about-img">
+        <!-- Image class .about-img is now controlled by CSS above -->
+        <img src="images/professor_image.png?q=80&w=800&auto=format&fit=crop" alt="Profesor" class="img-fluid about-img shadow">
       </div>
-      <div class="col-lg-6 ps-lg-5 reveal">
+
+      <!-- Text Column -->
+      <!-- CHANGED: Added 'pt-lg-5' to push text slightly down from the very top edge, but still higher than before -->
+      <div class="col-lg-6 ps-lg-5 reveal pt-lg-5"> 
         <h6 class="text-primary fw-bold text-uppercase ls-2">O Profesoru</h6>
         <h2 class="fw-bold mb-4">Učenje ne mora da bude stresno</h2>
         <h4 class="text-dark mb-3">Ana Petrović <span class="text-muted fs-6 fw-normal">| TEFL Sertifikovan predavač</span></h4>
