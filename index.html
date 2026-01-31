@@ -50,6 +50,12 @@
       width: 100%; 
       padding-top: 0px; 
     }
+
+    /* --- BOOTSTRAP OVERRIDES --- */
+    /* Menjamo padding-top za .py-5 klasu */
+    .py-5 {
+        padding-top: 10px !important; 
+    }
     
     /* --- NOVI TOP BAR STILOVI --- */
     #topBar {
@@ -76,15 +82,14 @@
     }
     #topBar .container {
         display: flex;
-        justify-content: center; /* *** IZMENA: Centriraj elemente horizontalno na desktopu *** */
+        justify-content: center; /* Centriraj elemente horizontalno na desktopu */
         align-items: center;
         height: 100%;
-        gap: 1.5rem; /* *** IZMENA: Razmak između elemenata na desktopu *** */
+        gap: 1.5rem; /* Razmak između elemenata na desktopu */
     }
     #topBar .contact-item {
         display: flex;
         align-items: center;
-        /* margin-left: 1.5rem;  *** UKLONJENO: Ovo više nije potrebno zbog 'gap' *** */
     }
     #topBar .contact-item i {
         margin-right: 0.5rem;
@@ -101,12 +106,9 @@
             flex-direction: row; /* Sada će biti u redu */
             flex-wrap: wrap;    /* Dozvoli prelom redova ako je predugačko */
             justify-content: center; /* Centriraj elemente horizontalno */
-            padding-left: 10px; /* Dodaj malo paddinga sa strane da se ne lepe za ivicu */
+            padding-left: 10px; 
             padding-right: 10px;
-            gap: 1rem; /* *** IZMENA: Manji razmak na mobilnom *** */
-        }
-        #topBar .contact-item {
-            /* margin: 2px 8px; *** UKLONJENO: Ovo više nije potrebno zbog 'gap' *** */
+            gap: 1rem; /* Manji razmak na mobilnom */
         }
     }
 
@@ -637,7 +639,7 @@
   <div class="container py-5">
     <div class="row align-items-center text-center text-lg-start">
       <div class="col-lg-6 mb-5 mb-lg-0 reveal">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Profesor" class="img-fluid about-img">
+        <img src="images/professor_image.jpg?q=80&w=800&auto=format&fit=crop" alt="Profesor" class="img-fluid about-img">
       </div>
       <div class="col-lg-6 ps-lg-5 reveal">
         <h6 class="text-primary fw-bold text-uppercase ls-2">O Profesoru</h6>
@@ -785,6 +787,9 @@
       mainNavbar.style.width = '100%';     
       mainNavbar.style.left = '0';          
       
+      // Ukupna visina zaglavlja je visina top bara + visina navbara kada je ZATVOREN.
+      // gBCR().height ovde daje visinu navbara u njegovom "collapsed" stanju,
+      // jer se ova funkcija ne poziva pri otvaranju/zatvaranju menija.
       totalHeaderHeight += mainNavbar.getBoundingClientRect().height;
     }
 
@@ -875,8 +880,10 @@
 
           if (mainNavbarElement) {
               if (window.innerWidth < 768) {
+                  // Na mobilnom, koristi fiksnu visinu collapsed navbara za skrolovanje
                   headerOffset += parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height-mobile-collapsed'));
               } else {
+                  // Na desktopu, koristi stvarnu visinu collapsed navbara
                   headerOffset += mainNavbarElement.getBoundingClientRect().height;
               }
           }
@@ -908,6 +915,9 @@
   document.addEventListener('DOMContentLoaded', () => {
     adjustNavbarOffset(); 
     window.addEventListener('resize', adjustNavbarOffset);
+
+    // UKLONJENI event listeneri za shown.bs.collapse i hidden.bs.collapse
+    // jer ne želimo da se padding-top menja kada se meni otvori/zatvori
 
     const firstCard = document.getElementById('card-a1'); 
     const firstDetail = document.getElementById('detail-a1');
@@ -999,8 +1009,10 @@
                 if (topBarElement) headerOffset += topBarElement.getBoundingClientRect().height;
 
                 if (mainNavbarElement) {
+                    // Na mobilnom, koristi fiksnu visinu collapsed navbara za skrolovanje
                     headerOffset += parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height-mobile-collapsed'));
                 } else {
+                    // Na desktopu, koristi stvarnu visinu collapsed navbara
                     headerOffset += mainNavbarElement.getBoundingClientRect().height;
                 }
                 
