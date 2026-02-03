@@ -194,6 +194,21 @@
             max-height: 38px;
             max-width: 150px;
         }
+
+        /* UPDATED: Align menu items to the right and increased font size on mobile */
+        .navbar-collapse {
+            text-align: right; /* Aligns text of nav-links to the right */
+        }
+        .navbar .nav-link { 
+            font-size: 1.2rem; /* INCREASED FONT SIZE for menu items */
+            padding-top: 0.6rem; /* Adjusted padding */
+            padding-bottom: 0.6rem;
+        }
+        .navbar .btn {
+            font-size: 1.1rem; /* Slightly smaller for button, adjusted to match new nav-link size */
+            padding-top: 0.6rem !important; /* Ensure padding is applied */
+            padding-bottom: 0.6rem !important;
+        }
     }
 
     .nav-link { color: var(--dark-text); }
@@ -213,12 +228,18 @@
       background-repeat: no-repeat;
       background-position: center right;
       background-size: contain;
-	  padding-top: 50px;
-      min-height: 90vh; 
+      
+      /* Keep padding-top to keep text away from the navbar */
+	  padding-top: 80px; 
+      
+      /* CHANGED: Increase min-height to provide more vertical space */
+      min-height: 100vh; 
       display: flex;
       align-items: center; 
       position: relative;
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      
+      /* CHANGED: Adjust clip-path to cut off less from the bottom (from 90% to 95%) */
+      clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); 
 	  background-color: #F7F0DA;
     }
 
@@ -227,7 +248,7 @@
         background-position: center right;
 		background-size: cover;
         text-align: center;
-		min-height: 70vh;
+		min-height: 70vh; /* Adjust as needed for mobile view, could be higher */
       }
       .hero .container .row { justify-content: center; }
       .hero-content-box {
@@ -734,7 +755,7 @@
 				  
 				  <div class="mb-4">
 					<!-- TVOJ_SITE_KEY_OVDE ZAMENJEN KLJUČEM IZ TVOJ HTML-A -->
-					<div class="g-recaptcha" data-sitekey="6LfAFFQsAAAAAHCljH3RsHQ1gY8e5J6MWyg8pO-A"></div> 
+					<div class="g-recaptcha" data-sitekey="6LemXl8sAAAAAKA9dgcU8ESZBpcV6YT1EO5HZ-Ir"></div> 
 				  </div>
 
 				  <div class="d-grid">
@@ -784,32 +805,33 @@
 </script>
 
 <script>
-  // Funkcija za dinamičko podešavanje paddinga na body-ju i scroll-padding-top na html-u
+  // Funkcija za dinamičko podešavanje paddinga
   function adjustNavbarOffset() {
     const topBar = document.getElementById('topBar');
     const mainNavbar = document.getElementById('mainNavbar');
-    let totalHeaderHeight = 0;
     let topBarHeight = 0;
+    let navbarHeight = 0;
 
     if (topBar) {
         topBarHeight = topBar.getBoundingClientRect().height;
-        totalHeaderHeight += topBarHeight;
     }
 
     if (mainNavbar) {
+      // Postavi navbar odmah ispod Top Bara
       mainNavbar.style.top = topBarHeight + 'px';
       mainNavbar.style.position = 'fixed'; 
       mainNavbar.style.width = '100%';     
       mainNavbar.style.left = '0';          
       
-      // Ukupna visina zaglavlja je visina top bara + visina navbara kada je ZATVOREN.
-      // gBCR().height ovde daje visinu navbara u njegovom "collapsed" stanju,
-      // jer se ova funkcija ne poziva pri otvaranju/zatvaranju menija.
-      totalHeaderHeight += mainNavbar.getBoundingClientRect().height;
+      navbarHeight = mainNavbar.getBoundingClientRect().height;
     }
 
-    document.body.style.paddingTop = totalHeaderHeight + 'px';
-    document.documentElement.style.scrollPaddingTop = totalHeaderHeight + 'px';
+    // Postavljamo padding na body SAMO za visinu Top Bara.
+    // Ovo dozvoljava da Hero sekcija "sklizne" ispod Navbara.
+    document.body.style.paddingTop = topBarHeight + 'px';
+    
+    // Zadržavamo scroll padding da anchor linkovi rade ispravno (da ne odu pod meni)
+    document.documentElement.style.scrollPaddingTop = (topBarHeight + navbarHeight) + 'px';
   }
 
   // 1. SCROLL ANIMATIONS (Intersection Observer)
