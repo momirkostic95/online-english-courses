@@ -8,4 +8,17 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('GA4 not loaded, event would be:', eventName, params);
         }
     }
+    
+    // Navbar "Zakaži Čas" Button
+    const reserveBtn = document.getElementById('reserveBtn');
+    if (reserveBtn) {
+        reserveBtn.addEventListener('click', function() {
+            sendEvent('reserve_class_click', {
+                'event_category': 'Click',
+                'event_label': 'Navbar - Zakaži Čas'
+            });
+        });
+    }
+
 });
+
