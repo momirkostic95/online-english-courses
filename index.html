@@ -464,7 +464,11 @@
         <li class="nav-item"><a class="nav-link px-3" href="#kursevi">Kursevi</a></li>
         <li class="nav-item"><a class="nav-link px-3" href="#o-nama">O nama</a></li>
         <li class="nav-item ms-lg-2">
-            <a class="btn btn-primary rounded-pill px-4 shadow-sm" href="#kontakt" onclick="if(typeof gtag === 'function') gtag('event', 'click_cta', { 'event_category': 'Navigation', 'event_label': 'Navbar - Zakaži Čas' });">Zakaži Čas</a>
+            <a class="btn btn-primary rounded-pill px-4 shadow-sm" href="#kontakt" 
+			onclick="sendEvent('reserve_class_click', {
+                'event_category': 'Click',
+                'event_label': Navigation,
+            })";>Zakaži Čas</a>
         </li>
       </ul>
     </div>
@@ -814,6 +818,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="scripts/analytics.js"></script> 
 <script>
   (function(){
     emailjs.init("r8V7IfWngv7nV0xRE"); // Zameni ovo svojim stvarnim EmailJS Public Key-om
