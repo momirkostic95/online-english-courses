@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+	
+	const coursesBtn = document.getElementById('coursesBtn');
+    if (coursesBtn) {
+        coursesBtn.addEventListener('click', function() {
+            sendEvent('courses_click', {
+                'event_category': 'Click',
+                'event_label': 'Navbar - Kursevi'
+            });
+        });
+    }
 
 });
 

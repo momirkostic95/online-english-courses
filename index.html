@@ -461,10 +461,10 @@
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-medium">
         <li class="nav-item"><a class="nav-link px-3" href="#pocetna">Početna</a></li>
-        <li class="nav-item"><a class="nav-link px-3" href="#kursevi">Kursevi</a></li>
-        <li class="nav-item"><a class="nav-link px-3" href="#o-nama">O nama</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#kursevi" id="coursesBtn">Kursevi</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#o-nama" id="aboutBtn">O nama</a></li>
         <li class="nav-item ms-lg-2">
-            <a class="btn btn-primary rounded-pill px-4 shadow-sm" href="#kontakt" id="reserveBtn">Zakaži Čas</a>
+            <a class="btn btn-primary rounded-pill px-4 shadow hover-lift" href="#kontakt" id="reserveBtn">Zakaži Čas</a>
         </li>
       </ul>
     </div>
@@ -510,7 +510,7 @@
           <div class="card-body">
             <div class="display-4 text-primary mb-3"><i class="bi bi-chat-left-dots"></i></div>
             <h5 class="card-title fw-bold fs-4}>Početni Nivo</h5>
-            <span class="badge bg-primary bg-opacity-10 text-primary mb-3">A1 - A2</span>
+            <span class="badge bg-primary bg-opacity-10 text-primary mb-3">OPŠTI ENGLESKI</span>
             <p class="card-text text-secondary">Savladaj osnove gramatike i svakodnevne komunikacije bez straha.</p>
             <div class="mt-4 text-primary fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div>
           </div>
@@ -553,7 +553,7 @@
             
             <!-- LEVA STRANA: Tekst i Check lista (Sada col-md-5) -->
             <div class="col-md-5"> 
-                <h3 class="text-primary fw-bold mb-3">Početni Nivo (General English)</h3>
+                <h3 class="text-primary fw-bold mb-3">Opšti Nivo (General English)</h3>
                 <p class="lead text-secondary">Ovaj kurs je dizajniran da vas oslobodi straha od grešaka. Kliknite na teme ispod da vidite primere materijala:</p>
                 
                 <!-- CHECK LISTA (Interaktivna) -->
@@ -561,34 +561,54 @@
                     
                     <!-- Prvi element (Default checked) -->
                     <div class="interactive-item p-3 border border-primary rounded shadow-sm d-flex align-items-center bg-primary-subtle" 
-                         onclick="updateA1Display('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.')"
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600&auto=format&fit=crop')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-check-circle-fill text-primary fs-4 me-3 flex-shrink-0"></i>
                         <div>
-                            <h6 class="fw-bold mb-0">Gramatika bez bubanja</h6>
+                            <h6 class="fw-bold mb-0">A1</h6>
                             <small class="text-muted">Učenje kroz vizuelne primere i mape uma.</small>
                         </div>
                     </div>
 
                     <!-- Drugi element -->
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.')"
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
-                            <h6 class="fw-bold mb-0">Snalaženje u inostranstvu</h6>
+                            <h6 class="fw-bold mb-0">A2</h6>
                             <small class="text-muted">Simulacije razgovora: hotel, aerodrom, restoran.</small>
                         </div>
                     </div>
 
                      <!-- Treći element -->
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.')"
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/general/opsti_b1.jpg?q=80&w=1600&auto=format&fit=crop')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
-                            <h6 class="fw-bold mb-0">Video i Audio vežbe</h6>
+                            <h6 class="fw-bold mb-0">B1</h6>
                             <small class="text-muted">Vežbanje slušanja kroz isečke iz popularnih serija.</small>
+                        </div>
+                    </div>
+					
+                    <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Proširujemo vokabular i usavršavamo izgovor kroz debate i prezentacije.', 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=1600&auto=format&fit=crop')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">B2</h6>
+                            <small class="text-muted">Proširivanje vokabulara i poboljšanje izgovora.</small>
+                        </div>
+                    </div>
+					
+					<div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Uronite u složene teme, akademske rasprave i napredno pisanje.', 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=1600&auto=format&fit=crop')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">C1</h6>
+                            <small class="text-muted">Učenje kroz složene teme i akademske rasprave.</small>
                         </div>
                     </div>
 
@@ -613,8 +633,12 @@
                 
                 <!-- Dugmići -->
                 <div class="d-grid gap-2">
-                    <a href="assets/pdf/example-a1.pdf" target="_blank" class="btn btn-outline-primary rounded-pill w-100">
-                        <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
+                    <!-- IZMENJENO DUGME: Sada otvara modal sa slikom -->
+                    <a href="#" class="btn btn-outline-primary rounded-pill w-100" id="a1-view-example-button"
+                       data-bs-toggle="modal" data-bs-target="#imageModal" 
+                       data-main-img-src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop"
+                       data-current-img-src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600&auto=format&fit=crop"> <!-- Početna slika za modal -->
+                        <i class="bi bi-eye me-2"></i> Prikaži primer
                     </a>
 					<a href="#kontakt" class="btn btn-primary rounded-pill w-100 shadow hover-lift">Prijavi se</a>
                 </div>
@@ -622,7 +646,7 @@
         </div>
       </div>
 
-      <!-- Detail 2 -->
+      <!-- Detail 2 (nepromenjeno) -->
       <div id="detail-b1" class="course-details-section p-5" style="border-left-color: #198754;">
         <div class="row align-items-center">
             <div class="col-md-8">
@@ -646,7 +670,7 @@
         </div>
       </div>
 
-      <!-- Detail 3 -->
+      <!-- Detail 3 (nepromenjeno) -->
       <div id="detail-c1" class="course-details-section p-5" style="border-left-color: #ffc107;">
         <div class="row align-items-center">
             <div class="col-md-8">
@@ -809,6 +833,25 @@
     <small class="text-white-50">&copy; 2024 MasterEnglish. Sva prava zadržana.</small>
   </div>
 </footer>
+
+<!-- Image Modal (IZMENJENO: Dodata klasa modal-fullscreen-sm-down) -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Prikaz primera</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="" id="modalImage" class="img-fluid rounded mx-auto d-block" alt="Prikaz primera lekcije">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -1011,10 +1054,26 @@
             });
         });
     }
+
+    // NOVO: Event listener za otvaranje modal prozora sa slikom
+    const imageModal = document.getElementById('imageModal');
+    if (imageModal) {
+        imageModal.addEventListener('show.bs.modal', function (event) {
+            // Dugme koje je trigerovalo modal
+            const button = event.relatedTarget; 
+            // Izvlačimo URL slike iz 'data-current-img-src' atributa dugmeta
+            // Sada se `data-current-img-src` koristi za modal
+            const imageUrl = button.getAttribute('data-current-img-src'); 
+            // Ažuriramo 'src' atribut slike unutar modala
+            const modalImage = imageModal.querySelector('#modalImage');
+            modalImage.src = imageUrl;
+        });
+    }
   });
 
-  // --- NOVA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA TEKSTOM I SKROLOM) ---
-  function updateA1Display(imgUrl, clickedElement, descriptionText) {
+  // --- IZMENJENA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA DVA URL PARAMETRA) ---
+  // Dodati su previewImgUrl i modalImgUrl
+  function updateA1Display(previewImgUrl, clickedElement, descriptionText, modalImgUrl) {
     // 1. Resetuj sve elemente u listi
     const listContainer = document.getElementById('a1-topics-list');
     const items = listContainer.querySelectorAll('.interactive-item');
@@ -1037,9 +1096,10 @@
     const activeIcon = clickedElement.querySelector('i');
     activeIcon.className = 'bi bi-check-circle-fill text-primary fs-4 me-3 flex-shrink-0';
 
-    // 3. Promeni sliku i TEKST sa fade efektom
-    const imgElement = document.getElementById('a1-preview-image');
+    // 3. Promeni sliku, TEKST i ažuriraj atribute za modal sa fade efektom
+    const imgElement = document.getElementById('a1-preview-image'); // Ovo je glavna preview slika
     const textElement = document.getElementById('a1-preview-text');
+    const viewExampleButton = document.getElementById('a1-view-example-button'); // Dugme za otvaranje modala
     const rightContentArea = document.getElementById('a1-right-content-area'); 
     
     // Zapocni fade-out animaciju za trenutni sadržaj
@@ -1048,8 +1108,12 @@
     
     // Sačekaj da se fade-out završi (300ms, koliko je definisano u CSS tranziciji)
     setTimeout(() => {
-        imgElement.src = imgUrl;
+        imgElement.src = previewImgUrl; // Koristi previewImgUrl za sliku unutar sekcije
         textElement.textContent = descriptionText;
+        if (viewExampleButton) { // Provera da li element postoji
+            // Ažuriraj data atribut dugmeta sa URL-om slike za MODAL
+            viewExampleButton.setAttribute('data-current-img-src', modalImgUrl); 
+        }
 
         imgElement.style.opacity = 1;
         textElement.style.opacity = 1;
