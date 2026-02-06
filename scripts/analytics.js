@@ -29,6 +29,57 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+	
+	const aboutBtn = document.getElementById('aboutBtn');
+    if (aboutBtn) {
+        aboutBtn.addEventListener('click', function() {
+            sendEvent('about_us_click', {
+                'event_category': 'Click',
+                'event_label': 'Navbar - O nama'
+            });
+        });
+    }
+	
+	const coursesHeaderBtn = document.getElementById('coursesHeaderBtn');
+    if (coursesHeaderBtn) {
+        coursesHeaderBtn.addEventListener('click', function() {
+            sendEvent('courses_click', {
+                'event_category': 'Click',
+                'event_label': 'Header - Kursevi'
+            });
+        });
+    }
+	
+	const aboutHeaderBtn = document.getElementById('aboutHeaderBtn');
+    if (aboutHeaderBtn) {
+        aboutHeaderBtn.addEventListener('click', function() {
+            sendEvent('about_us_click', {
+                'event_category': 'Click',
+                'event_label': 'Header - O nama'
+            });
+        });
+    }
+	
+	const submitBtn = document.getElementById('submit-btn');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+            sendEvent('send_email_click', {
+                'event_category': 'Click',
+                'event_label': 'Email'
+            });
+        });
+    }
+	
+	const generalCourseBtn = document.getElementById('card-a1');
+    if (generalCourseBtn) {
+        generalCourseBtn.addEventListener('click', function() {
+			console.log('Usao u click funkciju');
+            sendEvent('general_course_click', {
+                'event_category': 'Click',
+                'event_label': 'Kursevi'
+            });
+        });
+    }
 
 });
 
