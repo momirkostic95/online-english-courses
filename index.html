@@ -299,6 +299,12 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+    .reveal-delay-7 { transition-delay: 0.7s; }
+    .reveal-delay-8 { transition-delay: 0.8s; }
+
 
     /* --- ABOUT SECTION ANIMATIONS --- */
     #o-nama { background-color: var(--light-background) !important; }
@@ -430,6 +436,34 @@
     /* --- Kontakt Sekcija --- */
     .contact-info .text-dark { color: var(--dark-text) !important; }
     .contact-info .text-muted { color: var(--muted-text) !important; }
+
+    /* Stil za cenovnik listu */
+    .pricing-list-item {
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+        color: var(--dark-text);
+        font-weight: 500;
+        font-size: 1.1rem;
+    }
+    .pricing-list-item:last-child {
+        border-bottom: none;
+    }
+    .pricing-list-item .price {
+        font-weight: bold;
+        color: var(--primary-custom);
+    }
+    .pricing-category {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: var(--dark-text);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-custom);
+    }
+    .pricing-category:first-of-type {
+        margin-top: 0;
+    }
   </style>
 </head>
 <body>
@@ -462,6 +496,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-medium">
         <li class="nav-item"><a class="nav-link px-3" href="#pocetna">Početna</a></li>
         <li class="nav-item"><a class="nav-link px-3" href="#kursevi" id="coursesBtn">Kursevi</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#cenovnik">Cenovnik</a></li> <!-- DODATO: Cenovnik u meniju -->
         <li class="nav-item"><a class="nav-link px-3" href="#o-nama" id="aboutBtn">O nama</a></li>
         <li class="nav-item ms-lg-2">
             <a class="btn btn-primary rounded-pill px-4 shadow hover-lift" href="#kontakt" id="reserveBtn">Zakaži Čas</a>
@@ -509,7 +544,7 @@
         <div id="card-a1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-a1', this, true)">
           <div class="card-body">
             <div class="display-4 text-primary mb-3"><i class="bi bi-chat-left-dots"></i></div>
-            <h5 class="card-title fw-bold fs-4}>Početni Nivo</h5>
+            <h5 class="card-title fw-bold fs-4">Početni Nivo</h5>
             <span class="badge bg-primary bg-opacity-10 text-primary mb-3">OPŠTI ENGLESKI</span>
             <p class="card-text text-secondary">Savladaj osnove gramatike i svakodnevne komunikacije bez straha.</p>
             <div class="mt-4 text-primary fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div>
@@ -759,7 +794,57 @@
   </div>
 </section>
 
-<!-- 4. ABOUT SECTION -->
+<!-- DODATO: 4. PRICING SECTION -->
+<section id="cenovnik" class="py-5 bg-primary-subtle">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <h2 class="fw-bold display-5">Naš Cenovnik</h2>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="bg-white p-4 p-md-5 rounded shadow">
+
+          <div class="pricing-category reveal reveal-delay-1">Opšti Engleski</div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-2">
+            <div><i class="bi bi-circle-fill text-primary me-2 small"></i> A1 Nivo</div>
+            <div class="price">2200 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-3">
+            <div><i class="bi bi-circle-fill text-primary me-2 small"></i> A2 Nivo</div>
+            <div class="price">2400 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-4">
+            <div><i class="bi bi-circle-fill text-primary me-2 small"></i> B1 Nivo</div>
+            <div class="price">2600 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-5">
+            <div><i class="bi bi-circle-fill text-primary me-2 small"></i> B2 Nivo</div>
+            <div class="price">2800 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-6">
+            <div><i class="bi bi-circle-fill text-primary me-2 small"></i> C1 Nivo</div>
+            <div class="price">3000 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+
+          <div class="pricing-category reveal reveal-delay-7">Osnovna Škola</div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-8">
+            <div><i class="bi bi-circle-fill text-success me-2 small"></i> 5. - 8. Razred</div>
+            <div class="price">2500 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+
+          <div class="pricing-category reveal reveal-delay-9">Poslovni / Napredni</div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-10">
+            <div><i class="bi bi-circle-fill text-warning me-2 small"></i> C1+ Poslovni Engleski</div>
+            <div class="price">3200 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ABOUT SECTION (promenjen redosled) -->
 <section id="o-nama" class="py-5 bg-light position-relative">
   <div class="container py-5">
     <!-- CHANGED: 'align-items-center' to 'align-items-start' to move text up -->
@@ -811,7 +896,7 @@
   </div>
 </section>
 
-<!-- 5. CONTACT SECTION -->
+<!-- 6. CONTACT SECTION (promenjen redosled) -->
 <section id="kontakt" class="py-5">
   <div class="container py-5">
     <div class="row justify-content-center">
@@ -849,6 +934,7 @@
 					  <option value="Početni kurs">Početni kurs</option>
 					  <option value="Srednji kurs">Srednji kurs</option>
 					  <option value="Poslovni engleski">Poslovni engleski</option>
+                      <option value="Informacije o cenama">Informacije o cenama</option> <!-- DODATO: Opcija za Cenovnik -->
 					</select>
 				  </div>
 
