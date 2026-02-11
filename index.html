@@ -401,7 +401,8 @@
         .course-details-section .col-md-8,
         .course-details-section .col-md-4,
         .course-details-section .col-md-7,
-        .course-details-section .col-md-5 { text-align: center; }
+        .course-details-section .col-md-5,
+        .course-details-section .col-md-6 { text-align: center; } /* Dodato col-md-6 za novi panel */
         
         .course-details-section .list-unstyled { text-align: left; display: inline-block; }
         
@@ -538,48 +539,61 @@
     </div>
 
     <!-- Cards Row -->
-    <div class="row g-4">
-      <!-- Card 1 -->
-      <div class="col-md-4 reveal reveal-delay-1">
-        <div id="card-a1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-a1', this, true)">
-          <div class="card-body">
-            <div class="display-4 text-primary mb-3"><i class="bi bi-chat-left-dots"></i></div>
-            <h5 class="card-title fw-bold fs-4">Opšti Engleski</h5>
-            <p class="card-text text-secondary">Savladaj osnove gramatike i svakodnevne komunikacije bez straha.</p>
-            <div class="mt-4 text-primary fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div>
-          </div>
-        </div>
-      </div>
+    <div class="row g-4 justify-content-center">
+	  <!-- Card 1 -->
+	  <div class="col-lg-3 col-md-6 reveal reveal-delay-1">
+		<div id="card-a1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-a1', this, true)">
+		  <div class="card-body d-flex flex-column justify-content-between"> <!-- Dodate flexbox klase -->
+			<div class="display-4 text-primary mb-3"><i class="bi bi-chat-left-dots"></i></div>
+			<h5 class="card-title fw-bold fs-4">Opšti Engleski</h5>
+			<p class="card-text text-secondary">Savladaj osnove gramatike i svakodnevne komunikacije bez straha.</p>
+			<div class="mt-auto text-primary fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div> <!-- Promenjeno mt-4 u mt-auto -->
+		  </div>
+		</div>
+	  </div>
 
-      <!-- Card 2 -->
-      <div class="col-md-4 reveal reveal-delay-2">
-        <div id="card-b1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-b1', this, true)">
-          <div class="card-body">
-            <div class="display-4 text-success mb-3"><i class="bi bi-layers"></i></div>
-            <h5 class="card-title fw-bold fs-4">Osnovna Škola</h5>
-            <p class="card-text text-secondary">Obogati rečnik, popravi izgovor i postani tečan u govoru.</p>
-            <div class="mt-4 text-success fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div>
-          </div>
-        </div>
-      </div>
+	  <!-- Card 2 -->
+	  <div class="col-lg-3 col-md-6 reveal reveal-delay-2">
+		<div id="card-b1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-b1', this, true)">
+		  <div class="card-body d-flex flex-column justify-content-between"> <!-- Dodate flexbox klase -->
+			<div class="display-4 text-success mb-3"><i class="bi bi-layers"></i></div>
+			<h5 class="card-title fw-bold fs-4">Osnovna Škola</h5>
+			<p class="card-text text-secondary">Obogati rečnik, popravi izgovor i postani tečan u govoru.</p>
+			<div class="mt-auto text-success fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div> <!-- Promenjeno mt-4 u mt-auto -->
+		  </div>
+		</div>
+	  </div>
 
-      <!-- Card 3 -->
-      <div class="col-md-4 reveal reveal-delay-3">
-        <div id="card-c1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-c1', this, true)">
-          <div class="card-body">
-            <div class="display-4 text-warning mb-3"><i class="bi bi-briefcase"></i></div>
-            <h5 class="card-title fw-bold fs-4">Poslovni Engleski</h5>
-            <p class="card-text text-secondary">Prezentacije, pregovaranje, pisanje mejlova i stručna terminologija.</p>
-            <div class="mt-4 text-warning fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
+	  <!-- Card 3 -->
+	  <div class="col-lg-3 col-md-6 reveal reveal-delay-3">
+		<div id="card-c1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-c1', this, true)">
+		  <div class="card-body d-flex flex-column justify-content-between"> <!-- Dodate flexbox klase -->
+			<div class="display-4 text-warning mb-3"><i class="bi bi-briefcase"></i></div>
+			<h5 class="card-title fw-bold fs-4">Poslovni Engleski</h5>
+			<p class="card-text text-secondary">Prezentacije, pregovaranje, pisanje mejlova i stručna terminologija.</p>
+			<div class="mt-auto text-warning fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div> <!-- Promenjeno mt-4 u mt-auto -->
+		  </div>
+		</div>
+	  </div>
+
+	  <!-- Card 4 (NOVO) -->
+	  <div class="col-lg-3 col-md-6 reveal reveal-delay-4">
+		<div id="card-d1" class="card course-card h-100 p-4 text-center" onclick="toggleCourse('detail-d1', this, true)">
+		  <div class="card-body d-flex flex-column justify-content-between"> <!-- Dodate flexbox klase -->
+			<div class="display-4 text-danger mb-3"><i class="bi bi-mortarboard"></i></div>
+			<h5 class="card-title fw-bold fs-4">Cambridge Ispiti</h5>
+			<p class="card-text text-secondary">Priprema za međunarodno priznate sertifikate: KET, PET, FCE, CAE.</p>
+			<div class="mt-auto text-danger fw-bold small">Prikaži Detalje <i class="bi bi-chevron-down card-arrow-icon"></i></div> <!-- Promenjeno mt-4 u mt-auto -->
+		  </div>
+		</div>
+	  </div>
+	</div>
+
 
     <!-- Hidden Details Area -->
     <div class="course-details-container"> 
       
-      <!-- *** IZMENJEN DETAIL 1 (Početni nivo) - ŠIRE DESNO *** -->
+      <!-- Detail 1 (Početni nivo) -->
       <div id="detail-a1" class="course-details-section p-5"> 
         <div class="row align-items-center">
             
@@ -593,7 +607,7 @@
                     
                     <!-- Prvi element (Default checked) -->
                     <div class="interactive-item p-3 border border-primary rounded shadow-sm d-flex align-items-center bg-primary-subtle" 
-                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/general/opsti_a1.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/general/opsti_a1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-primary')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-check-circle-fill text-primary fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -604,7 +618,7 @@
 
                     <!-- Drugi element -->
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.', 'docs/courses/general/opsti_a2.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.', 'docs/courses/general/opsti_a2.jpg?q=80&w=1600&auto=format&fit=crop', 'text-primary')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -615,7 +629,7 @@
 
                      <!-- Treći element -->
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/general/opsti_b1.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/general/opsti_b1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-primary')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -625,7 +639,7 @@
                     </div>
 					
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Proširujemo vokabular i usavršavamo izgovor kroz debate i prezentacije.', 'docs/courses/general/opsti_b2.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Proširujemo vokabular i usavršavamo izgovor kroz debate i prezentacije.', 'docs/courses/general/opsti_b2.jpg?q=80&w=1600&auto=format&fit=crop', 'text-primary')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -635,7 +649,7 @@
                     </div>
 					
 					<div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Uronite u složene teme, akademske rasprave i napredno pisanje.', 'docs/courses/general/opsti_c1.pdf?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Uronite u složene teme, akademske rasprave i napredno pisanje.', 'docs/courses/general/opsti_c1.pdf?q=80&w=1600&auto=format&fit=crop', 'text-primary')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -678,11 +692,11 @@
         </div>
       </div>
 
-      <!-- Detail 2 (nepromenjeno) -->
+      <!-- Detail 2 (Osnovna Škola) -->
       <div id="detail-b1" class="course-details-section p-5" style="border-left-color: #198754;">
         <div class="row align-items-center">
             <div class="col-md-5"> 
-                <h3 class="text-primary fw-bold mb-3">Osnovna škola (Elementary  School)</h3>
+                <h3 class="text-success fw-bold mb-3">Osnovna škola (Elementary  School)</h3>
                 <p class="lead text-secondary">Ovaj kurs je dizajniran da vas oslobodi straha od grešaka. Kliknite na teme ispod da vidite primere materijala:</p>
                 
                 <!-- CHECK LISTA (Interaktivna) -->
@@ -690,9 +704,9 @@
                     
                     <!-- Prvi element (Default checked) -->
                     <div class="interactive-item p-3 border border-primary rounded shadow-sm d-flex align-items-center bg-primary-subtle" 
-                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/elementary/elementary_5.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/elementary/elementary_5.jpg?q=80&w=1600&auto=format&fit=crop', 'text-success')"
                          style="cursor: pointer; transition: all 0.2s;">
-                        <i class="bi bi-check-circle-fill text-primary fs-4 me-3 flex-shrink-0"></i>
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-3 flex-shrink-0"></i>
                         <div>
                             <h6 class="fw-bold mb-0">5. razred</h6>
                             <small class="text-muted">Učenje kroz vizuelne primere i mape uma.</small>
@@ -701,7 +715,7 @@
 
                     <!-- Drugi element -->
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.', 'docs/courses/elementary/elementary_6.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.', 'docs/courses/elementary/elementary_6.jpg?q=80&w=1600&auto=format&fit=crop', 'text-success')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -712,7 +726,7 @@
 
                      <!-- Treći element -->
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/elementary/elementary_7.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/elementary/elementary_7.jpg?q=80&w=1600&auto=format&fit=crop', 'text-success')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -722,7 +736,7 @@
                     </div>
 					
                     <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
-                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Proširujemo vokabular i usavršavamo izgovor kroz debate i prezentacije.', 'docs/courses/elementary/elementary_8.jpg?q=80&w=1600&auto=format&fit=crop')"
+                         onclick="updateA1Display('elementary-course-list', 2, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Proširujemo vokabular i usavršavamo izgovor kroz debate i prezentacije.', 'docs/courses/elementary/elementary_8.jpg?q=80&w=1600&auto=format&fit=crop', 'text-success')"
                          style="cursor: pointer; transition: all 0.2s;">
                         <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
                         <div>
@@ -764,25 +778,163 @@
         </div>
       </div>
 
-      <!-- Detail 3 (nepromenjeno) -->
-      <div id="detail-c1" class="course-details-section p-5" style="border-left-color: #ffc107;">
+      <!-- Detail 3 (Business) -->
+      <div id="detail-c1" class="course-details-section p-5" style="border-left-color: #ffc107;"> 
         <div class="row align-items-center">
-            <div class="col-md-8">
-                <h3 class="text-warning fw-bold mb-3">Poslovni Engleski (Business)</h3>
-                <p class="lead">Za profesionalce koji žele da napreduju u karijeri.</p>
-                <ul class="list-unstyled mt-4">
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Pisanje formalnih izveštaja</li>
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Vokabular za sastanke i Zoom pozive</li>
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Priprema za intervju za posao</li>
-                </ul>
+            
+            <!-- LEVA STRANA: Tekst i Check lista (Sada col-md-5) -->
+            <div class="col-md-5"> 
+                <h3 class="text-warning fw-bold mb-3">Poslovni Engleski (Business English)</h3>
+                <p class="lead text-secondary">Ovaj kurs je dizajniran da vas oslobodi straha od grešaka. Kliknite na teme ispod da vidite primere materijala:</p>
+                
+                <!-- CHECK LISTA (Interaktivna) -->
+                <div class="d-flex flex-column gap-3 mt-4" id="business-course-list">
+                     <!-- Treći element -->
+                    <div class="interactive-item p-3 border border-primary rounded shadow-sm d-flex align-items-center bg-primary-subtle" 
+                         onclick="updateA1Display('business-course-list', 3, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/general/opsti_b1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-warning')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-check-circle-fill text-warning fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">B1</h6>
+                            <small class="text-muted">Vežbanje slušanja kroz isečke iz popularnih serija.</small>
+                        </div>
+                    </div>
+					
+                    <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('business-course-list', 3, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Proširujemo vokabular i usavršavamo izgovor kroz debate i prezentacije.', 'docs/courses/general/opsti_b2.jpg?q=80&w=1600&auto=format&fit=crop', 'text-warning')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">B2</h6>
+                            <small class="text-muted">Proširivanje vokabulara i poboljšanje izgovora.</small>
+                        </div>
+                    </div>
+					
+					<div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('business-course-list', 3, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Uronite u složene teme, akademske rasprave i napredno pisanje.', 'docs/courses/general/opsti_c1.pdf?q=80&w=1600&auto=format&fit=crop', 'text-warning')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">C1</h6>
+                            <small class="text-muted">Učenje kroz složene teme i akademske rasprave.</small>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="col-md-4 text-center border-start">
-                <p class="text-muted fst-italic">"Primer lekcije: The Elevator Pitch - prodaj svoju ideju."</p>
+
+            <!-- DESNA STRANA: Slika, TEKST i dugmići (Sada col-md-7) -->
+            <div class="col-md-7 text-center ps-md-4 mobile-spacer" id="3-right-content-area">
+                
+                <!-- Slika koja se menja -->
+                <div class="mb-3 position-relative">
+                    <img id="3-preview-image" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" 
+                         alt="Prikaz lekcije" 
+                         class="img-fluid rounded shadow-lg border border-3 border-white w-100" 
+                         style="transition: opacity 0.3s ease; object-fit: cover; max-height: 250px;"> 
+                </div>
+
+                <!-- TEKST ISPOD SLIKE -->
+                <div id="3-preview-text" class="mb-4 text-muted fst-italic px-2" style="font-size: 0.95rem; transition: opacity 0.3s ease;">
+                    Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.
+                </div>
+                
+                <!-- Dugmići -->
                 <div class="d-grid gap-2">
-                    <a href="assets/pdf/example-c1.pdf" target="_blank" class="btn btn-outline-warning rounded-pill w-100 mt-2 text-dark">
-                        <i class="bi bi-file-earmark-pdf me-2"></i> Preuzmi primer lekcije
+                    <!-- IZMENJENO DUGME: Sada otvara modal sa slikom -->
+                    <a href="#" class="btn btn-outline-primary rounded-pill w-100" id="3-view-example-button"
+                       data-bs-toggle="modal" data-bs-target="#imageModal" 
+                       data-main-img-src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop"
+                       data-current-img-src="docs/courses/general/opsti_a1.jpg?q=80&w=1600&auto=format&fit=crop"> <!-- Početna slika za modal -->
+                        <i class="bi bi-eye me-2"></i> Prikaži primer
                     </a>
-					<a href="#kontakt" class="btn btn-warning rounded-pill w-100 text-dark">Prijavi se</a>
+					<a href="#kontakt" class="btn btn-primary rounded-pill w-100 shadow hover-lift">Prijavi se</a>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Detail 4 (Cambridge Ispiti - NOVO) -->
+      <div id="detail-d1" class="course-details-section p-5" style="border-left-color: #dc3545;">
+        <div class="row align-items-center">
+            <div class="col-md-5"> 
+                <h3 class="text-danger fw-bold mb-3">Cambridge Ispiti</h3>
+                <p class="lead text-secondary">Ovaj kurs je dizajniran da vas oslobodi straha od grešaka. Kliknite na teme ispod da vidite primere materijala:</p>
+                
+                <!-- CHECK LISTA (Interaktivna) -->
+                <div class="d-flex flex-column gap-3 mt-4" id="cambridge-course-list">
+                    
+                    <!-- Prvi element (Default checked) -->
+                    <div class="interactive-item p-3 border border-primary rounded shadow-sm d-flex align-items-center bg-primary-subtle" 
+                         onclick="updateA1Display('cambridge-course-list', 4, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', this, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/elementary/elementary_5.jpg?q=80&w=1600&auto=format&fit=crop', 'text-danger')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-check-circle-fill text-danger fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">KET (Key English Test)</h6>
+                            <small class="text-muted">Učenje kroz vizuelne primere i mape uma.</small>
+                        </div>
+                    </div>
+
+                    <!-- Drugi element -->
+                    <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('cambridge-course-list', 4, 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop', this, 'Od naručivanja kafe do rešavanja problema na recepciji hotela. Vežbamo stvarne scenarije kroz igranje uloga, tako da budete spremni za put.', 'docs/courses/elementary/elementary_6.jpg?q=80&w=1600&auto=format&fit=crop', 'text-danger')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">PET (Preliminary English Test)</h6>
+                            <small class="text-muted">Simulacije razgovora: hotel, aerodrom, restoran.</small>
+                        </div>
+                    </div>
+
+                     <!-- Treći element -->
+                    <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('cambridge-course-list', 4, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/elementary/elementary_7.jpg?q=80&w=1600&auto=format&fit=crop', 'text-danger')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">FCE (First Certificate in English)</h6>
+                            <small class="text-muted">Vežbanje slušanja kroz isečke iz popularnih serija.</small>
+                        </div>
+                    </div>
+					
+                    <div class="interactive-item p-3 border border-light rounded shadow-sm d-flex align-items-center bg-white" 
+                         onclick="updateA1Display('cambridge-course-list', 4, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', this, 'Proširujemo vokabular i usavršavamo izgovor kroz debate i prezentacije.', 'docs/courses/elementary/elementary_8.jpg?q=80&w=1600&auto=format&fit=crop', 'text-danger')"
+                         style="cursor: pointer; transition: all 0.2s;">
+                        <i class="bi bi-circle text-muted fs-4 me-3 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="fw-bold mb-0">CAE (Certificate in Advanced English)</h6>
+                            <small class="text-muted">Proširivanje vokabulara i poboljšanje izgovora.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESNA STRANA: Slika, TEKST i dugmići (Sada col-md-7) -->
+            <div class="col-md-7 text-center ps-md-4 mobile-spacer" id="4-right-content-area">
+                
+                <!-- Slika koja se menja -->
+                <div class="mb-3 position-relative">
+                    <img id="4-preview-image" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" 
+                         alt="Prikaz lekcije" 
+                         class="img-fluid rounded shadow-lg border border-3 border-white w-100" 
+                         style="transition: opacity 0.3s ease; object-fit: cover; max-height: 250px;"> 
+                </div>
+
+                <!-- TEKST ISPOD SLIKE -->
+                <div id="4-preview-text" class="mb-4 text-muted fst-italic px-2" style="font-size: 0.95rem; transition: opacity 0.3s ease;">
+                    Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.
+                </div>
+                
+                <!-- Dugmići -->
+                <div class="d-grid gap-2">
+                    <!-- IZMENJENO DUGME: Sada otvara modal sa slikom -->
+                    <a href="#" class="btn btn-outline-primary rounded-pill w-100" id="4-view-example-button"
+                       data-bs-toggle="modal" data-bs-target="#imageModal" 
+                       data-main-img-src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop"
+                       data-current-img-src="docs/courses/elementary/elementary_5.jpg?q=80&w=1600&auto=format&fit=crop"> <!-- Početna slika za modal -->
+                        <i class="bi bi-eye me-2"></i> Prikaži primer
+                    </a>
+					<a href="#kontakt" class="btn btn-primary rounded-pill w-100 shadow hover-lift">Prijavi se</a>
                 </div>
             </div>
         </div>
@@ -792,7 +944,7 @@
 </section>
 
 <!-- DODATO: 4. PRICING SECTION -->
-<section id="cenovnik" class="py-5 bg-primary-subtle">
+<section id="cenovnik" class="py-5"> <!-- Uklonjena klasa bg-primary-subtle -->
   <div class="container">
     <div class="text-center mb-5 reveal">
       <h2 class="fw-bold display-5">Naš Cenovnik</h2>
@@ -835,6 +987,27 @@
             <div><i class="bi bi-circle-fill text-warning me-2 small"></i> C1+ Poslovni Engleski</div>
             <div class="price">3200 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
           </div>
+
+          <!-- NOVO: Cambridge Ispiti u cenovniku -->
+          <div class="pricing-category reveal reveal-delay-11">Cambridge Ispiti</div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-12">
+            <div><i class="bi bi-circle-fill text-danger me-2 small"></i> KET (A2)</div>
+            <div class="price">3000 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-13">
+            <div><i class="bi bi-circle-fill text-danger me-2 small"></i> PET (B1)</div>
+            <div class="price">3000 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-14">
+            <div><i class="bi bi-circle-fill text-danger me-2 small"></i> FCE (B2)</div>
+            <div class="price">3300 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pricing-list-item reveal reveal-delay-15">
+            <div><i class="bi bi-circle-fill text-danger me-2 small"></i> CAE (C1)</div>
+            <div class="price">3500 RSD <span class="fs-6 text-muted fw-normal">/ čas (45 min)</span></div>
+          </div>
+          <!-- Kraj novih Cambridge ispita u cenovniku -->
+
         </div>
       </div>
     </div>
@@ -931,7 +1104,8 @@
 					  <option value="Početni kurs">Početni kurs</option>
 					  <option value="Srednji kurs">Srednji kurs</option>
 					  <option value="Poslovni engleski">Poslovni engleski</option>
-                      <option value="Informacije o cenama">Informacije o cenama</option> <!-- DODATO: Opcija za Cenovnik -->
+                      <option value="Cambridge Priprema">Cambridge Priprema</option> <!-- DODATO: Opcija za Cambridge -->
+                      <option value="Informacije o cenama">Informacije o cenama</option>
 					</select>
 				  </div>
 
@@ -1226,7 +1400,7 @@
 
   // --- IZMENJENA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA DVA URL PARAMETRA) ---
   // Dodati su previewImgUrl i modalImgUrl
-  function updateA1Display(listId, courseNo, previewImgUrl, clickedElement, descriptionText, modalImgUrl) {
+  function updateA1Display(listId, courseNo, previewImgUrl, clickedElement, descriptionText, modalImgUrl, color) {
     // 1. Resetuj sve elemente u listi
     const listContainer = document.getElementById(listId);
     const items = listContainer.querySelectorAll('.interactive-item');
@@ -1247,7 +1421,7 @@
     
     // Promeni ikonicu na check
     const activeIcon = clickedElement.querySelector('i');
-    activeIcon.className = 'bi bi-check-circle-fill text-primary fs-4 me-3 flex-shrink-0';
+    activeIcon.className = 'bi bi-check-circle-fill fs-4 me-3 flex-shrink-0 ' + color ;
 
     // 3. Promeni sliku, TEKST i ažuriraj atribute za modal sa fade efektom
     const imgElement = document.getElementById(courseNo + '-preview-image'); // Ovo je glavna preview slika
