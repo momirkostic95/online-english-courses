@@ -1256,8 +1256,16 @@
     if (currentScrollTimeout) {
         clearTimeout(currentScrollTimeout);
     }
-    
-    // Skroluj do detalja
+	
+	if(detailId == 'detail-a1')
+		updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/general/opsti_a1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-primary');
+    else if(detailId == 'detail-b1')
+		updateA1Display('elementary-course-list', 2, 'docs/courses/elementary/previews/elementary_5.jpg?q=80&w=800&auto=format&fit=contain', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/elementary/elementary_5.jpg?q=80&w=1600&auto=format&fit=crop', 'text-success')
+    else if(detailId == 'detail-c1')
+		updateA1Display('business-course-list', 3, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', undefined, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/business/business_b1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-warning')
+	else if(detailId == 'detail-d1')
+		updateA1Display('cambridge-course-list', 4, 'docs/courses/cambridge/cambridge.jpg?q=80&w=800&auto=format&fit=crop', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/cambridge/cambridge.jpg?q=80&w=1600&auto=format&fit=crop', 'text-danger');
+	// Skroluj do detalja
     if (doScroll) {
       currentScrollTimeout = setTimeout(() => {
           let headerOffset = 0;
@@ -1380,11 +1388,17 @@
     });
 
     // 2. Aktiviraj kliknuti element
-    clickedElement.classList.remove('border-light', 'bg-white');
-    clickedElement.classList.add('bg-primary-subtle', 'border-primary');
+	var clieckedDivElement = clickedElement;
+	if(clickedElement == undefined)
+	{
+		clieckedDivElement = document.querySelector('#' + listId + ' > div');
+	}
+		
+    clieckedDivElement.classList.remove('border-light', 'bg-white');
+    clieckedDivElement.classList.add('bg-primary-subtle', 'border-primary');
     
     // Promeni ikonicu na check
-    const activeIcon = clickedElement.querySelector('i');
+    const activeIcon = clieckedDivElement.querySelector('i');
     activeIcon.className = 'bi bi-check-circle-fill fs-4 me-3 flex-shrink-0 ' + color ;
 
     // 3. Promeni sliku, TEKST i ažuriraj atribute za modal sa fade efektom
