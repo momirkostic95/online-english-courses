@@ -1259,13 +1259,13 @@
     }
 	
 	if(detailId == 'detail-a1')
-		updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/general/opsti_a1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-primary');
+		updateA1Display('general-course-list', 1, 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/general/opsti_a1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-primary', false);
     else if(detailId == 'detail-b1')
-		updateA1Display('elementary-course-list', 2, 'docs/courses/elementary/previews/elementary_5.jpg?q=80&w=800&auto=format&fit=contain', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/elementary/elementary_5.jpg?q=80&w=1600&auto=format&fit=crop', 'text-success')
+		updateA1Display('elementary-course-list', 2, 'docs/courses/elementary/previews/elementary_5.jpg?q=80&w=800&auto=format&fit=contain', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/elementary/elementary_5.jpg?q=80&w=1600&auto=format&fit=crop', 'text-success', false)
     else if(detailId == 'detail-c1')
-		updateA1Display('business-course-list', 3, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', undefined, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/business/business_b1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-warning')
+		updateA1Display('business-course-list', 3, 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop', undefined, 'Koristimo isečke iz vaših omiljenih filmova i serija da uvežbamo slušanje i usvojimo prirodne izraze koje izvorni govornici zaista koriste.', 'docs/courses/business/business_b1.jpg?q=80&w=1600&auto=format&fit=crop', 'text-warning', false)
 	else if(detailId == 'detail-d1')
-		updateA1Display('cambridge-course-list', 4, 'docs/courses/cambridge/cambridge.jpg?q=80&w=800&auto=format&fit=crop', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/cambridge/cambridge.jpg?q=80&w=1600&auto=format&fit=crop', 'text-danger');
+		updateA1Display('cambridge-course-list', 4, 'docs/courses/cambridge/cambridge.jpg?q=80&w=800&auto=format&fit=crop', undefined, 'Zaboravite na suvoparna pravila. Naš vizuelni pristup gramatici koristi boje, mape uma i logiku koju ćete lako zapamtiti i primeniti.', 'docs/courses/cambridge/cambridge.jpg?q=80&w=1600&auto=format&fit=crop', 'text-danger', false);
 	// Skroluj do detalja
     if (doScroll) {
       currentScrollTimeout = setTimeout(() => {
@@ -1279,10 +1279,10 @@
               if (window.innerWidth < 768) {
                   // Na mobilnom, koristi fiksnu visinu collapsed navbara za skrolovanje
                   headerOffset += parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height-mobile-collapsed'));
-              } else {
+			  } else {
                   // Na desktopu, koristi stvarnu visinu collapsed navbara
                   headerOffset += mainNavbarElement.getBoundingClientRect().height;
-              }
+			  }
           }
 
           const elementTop = targetDetail.getBoundingClientRect().top + window.pageYOffset;
@@ -1373,7 +1373,7 @@
 
   // --- IZMENJENA FUNKCIJA ZA A1 KURS CHECK LISTU (SADA SA DVA URL PARAMETRA) ---
   // Dodati su previewImgUrl i modalImgUrl
-  function updateA1Display(listId, courseNo, previewImgUrl, clickedElement, descriptionText, modalImgUrl, color) {
+  function updateA1Display(listId, courseNo, previewImgUrl, clickedElement, descriptionText, modalImgUrl, color, shouldScroll = true) {
     // 1. Resetuj sve elemente u listi
     const listContainer = document.getElementById(listId);
     const items = listContainer.querySelectorAll('.interactive-item');
@@ -1430,7 +1430,7 @@
 			textElement.style.opacity = 1;
 		}
 
-        if (window.innerWidth < 768 && rightContentArea) {
+        if (shouldScroll && window.innerWidth < 768 && rightContentArea) {
             setTimeout(() => {
                 let headerOffset = 0;
                 const topBarElement = document.getElementById('topBar');
@@ -1448,7 +1448,7 @@
                 
                 const elementTop = rightContentArea.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = elementTop - headerOffset - 20; 
-
+				
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth"
