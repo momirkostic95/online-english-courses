@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	const generalCourseBtn = document.getElementById('card-a1');
     if (generalCourseBtn) {
         generalCourseBtn.addEventListener('click', function() {
-			console.log('Usao u click funkciju');
             sendEvent('general_course_click', {
                 'event_category': 'Click',
                 'event_label': 'Kursevi'
