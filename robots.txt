@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.masterenglisheasy.com/sitemap.xml
+Sitemap: https://masterenglisheasy.com/sitemap.xml
